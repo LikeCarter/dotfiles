@@ -1,11 +1,20 @@
+sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+
 sudo chsh -s $(which zsh) $(whoami)
 
 echo $0
 
-ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
-
 xcode-select —-install
 
-brew install zsh
+ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 
-sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+brew update
+
+brew install pyenv
+brew install zsh
+brew install nvm
+
+pyenv install 3.9
+nvm install 16
+
+npm i -g yarn
