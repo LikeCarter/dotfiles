@@ -72,6 +72,7 @@ function json_colour() {
 source ~/dotfiles/.extra
 source ~/dotfiles/.functions
 source ~/dotfiles/.aliases
+source ~/dotfiles/.chamber
 
 # Create git signing key
 gpg --full-generate-key

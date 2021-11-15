@@ -1,0 +1,1 @@
+chamber completion zsh > .chamber
