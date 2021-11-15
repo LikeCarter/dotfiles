@@ -73,3 +73,4 @@ source ~/dotfiles/.aliases
 gpg --full-generate-key
 gpg --list-secret-keys --keyid-format=long
 git config --global user.signingkey 3AA5C34371567BD2
+git config --global commit.gpgsign true
