@@ -39,6 +39,9 @@ brew install grep
 brew install openssh
 brew install git
 
+# Setup git config
+cp .gitconfig ~/.gitconfig
+
 # Update xcode
 xcode-select —-install
 
