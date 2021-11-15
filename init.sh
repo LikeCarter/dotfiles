@@ -61,9 +61,9 @@ brew install go
 brew install zlib bzip2
 
 # Setup pyenv
-pyenv install 3.9-dev
-pyenv local 3.9-dev
-pyenv global 3.9-dev
+pyenv install 3.9.7
+pyenv local 3.9.7
+pyenv global 3.9.7
 pip install --upgrade pip
 
 # Install chamber of secrets
