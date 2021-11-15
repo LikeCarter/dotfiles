@@ -53,6 +53,10 @@ xcode-select —-install
 brew install pyenv
 brew install zsh
 brew install nvm
+brew install aws-vault
+
+# Setup aws-vault
+aws-vault add <name>
 
 pyenv install 3.9
 nvm install 16
