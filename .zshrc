@@ -4,8 +4,8 @@ export ZSH_THEME="robbyrussell"
 export GOPATH=~/go
 export PATH=$HOME/bin:/usr/local/bin:$GOPATH/bin:/opt/homebrew/sbin:$PATH
 
-export jog="grep -v "jog" ~/.zsh_history_ext | grep -a --color=never "${PWD}   " | cut -f1 -d"⋮" | tail"
-export zshconfig="nano ~/.zshrc"
+alias jog='grep -v "jog" ~/.zsh_history_ext | grep -a --color=never "${PWD}   " | cut -f1 -d"⋮" | tail'
+alias zshconfig="nano ~/.zshrc"
 
 # Log bash history.
 function zshaddhistory() {
