@@ -54,6 +54,10 @@ brew install pyenv
 brew install zsh
 brew install nvm
 brew install aws-vault
+brew install go
+
+# Install chamber of secrets
+go get github.com/segmentio/chamber
 
 # Setup aws-vault
 aws-vault add <name>
