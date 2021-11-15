@@ -51,14 +51,20 @@ xcode-select —-install
 
 # Install my workflow tools
 brew install pyenv
+brew install pyenv-virtualenv
 brew install zsh
 brew install nvm
 brew install aws-vault
 brew install go
 
+# Fix pyenv issues
+brew install zlib bzip2
+
 # Setup pyenv
-pyenv install 3.9.7
-pyenv local 3.9.7
+pyenv install 3.9-dev
+pyenv local 3.9-dev
+pyenv global 3.9-dev
+pip install --upgrade pip
 
 # Install chamber of secrets
 go get github.com/segmentio/chamber
@@ -66,7 +72,6 @@ go get github.com/segmentio/chamber
 # Setup aws-vault
 aws-vault add <name>
 
-pyenv install 3.9
 nvm install 16
 npm i -g yarn
 
