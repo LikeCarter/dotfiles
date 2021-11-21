@@ -75,7 +75,7 @@ pyenv global 3.9.7
 pip install --upgrade pip
 
 # Install chamber of secrets
-go get github.com/segmentio/chamber
+go instal github.com/segmentio/chamber@latest
 
 # Setup aws-vault
 aws-vault add <name>
