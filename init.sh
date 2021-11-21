@@ -43,6 +43,14 @@ brew install grep
 brew install openssh
 brew install git
 
+# Install some of my preferred applications
+# brew install 1password
+# brew install spotify
+# brew install google-chrome
+# brew install iterm2
+# brew install visual-studio-code
+# brew install slack
+
 # Setup git config
 cp .gitconfig ~/.gitconfig
 

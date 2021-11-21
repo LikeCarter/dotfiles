@@ -26,6 +26,9 @@ export ZSH_THEME="robbyrussell"
 
 source $ZSH/oh-my-zsh.sh
 
+# Initialize homebrew
+eval "$(/opt/homebrew/bin/brew shellenv)"
+
 # Set paths
 export GOPATH=~/go
 export PATH=$HOME/bin:/usr/local/bin:$GOPATH/bin:/opt/homebrew/sbin:$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH
@@ -75,7 +78,7 @@ source ~/dotfiles/.aliases
 source ~/dotfiles/.chamber
 
 # Create git signing key
-gpg --full-generate-key
-gpg --list-secret-keys --keyid-format=long
-git config --global user.signingkey 3AA5C34371567BD2
+# gpg --full-generate-key
+# gpg --list-secret-keys --keyid-format=long
+git config --global user.signingkey 62D70959BFE1EE90
 git config --global commit.gpgsign true
