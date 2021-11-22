@@ -63,6 +63,7 @@ brew install pyenv-virtualenv
 brew install zsh
 brew install nvm
 brew install aws-vault
+brew install chamber
 brew install go
 
 # Fix pyenv issues
@@ -73,9 +74,6 @@ pyenv install 3.9.7
 pyenv local 3.9.7
 pyenv global 3.9.7
 pip install --upgrade pip
-
-# Install chamber of secrets
-go get github.com/segmentio/chamber
 
 # Setup aws-vault
 aws-vault add <name>
