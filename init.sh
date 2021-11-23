@@ -65,6 +65,7 @@ brew install nvm
 brew install aws-vault
 brew install chamber
 brew install go
+brew install terraform
 
 # Fix pyenv issues
 brew install zlib bzip2
@@ -75,11 +76,11 @@ pyenv local 3.9.7
 pyenv global 3.9.7
 pip install --upgrade pip
 
-# Setup aws-vault
-aws-vault add <name>
-
 nvm install 16
 npm i -g yarn
 
 # Remove outdated versions from the cellar.
 brew cleanup
+
+# Setup aws-vault
+# aws-vault add <name>
