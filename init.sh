@@ -57,7 +57,7 @@ cp .gitconfig ~/.gitconfig
 # Update xcode
 xcode-select —-install
 
-# Install my workflow tools
+# Install preferred workflow tools
 brew install pyenv
 brew install pyenv-virtualenv
 brew install zsh
@@ -66,6 +66,9 @@ brew install aws-vault
 brew install chamber
 brew install go
 brew install terraform
+
+# Install optional packages
+# brew install docker --cask
 
 # Fix pyenv issues
 brew install zlib bzip2
@@ -82,5 +85,5 @@ npm i -g yarn
 # Remove outdated versions from the cellar.
 brew cleanup
 
-# Setup aws-vault
+# Install an aws-vault
 # aws-vault add <name>
