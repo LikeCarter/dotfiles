@@ -67,6 +67,9 @@ brew install chamber
 brew install go
 brew install terraform
 
+# brew install lazydocker
+# brew install lazygit
+
 # Install optional packages
 # brew install docker --cask
 
