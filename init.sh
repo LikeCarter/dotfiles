@@ -66,9 +66,11 @@ brew install aws-vault
 brew install chamber
 brew install go
 brew install terraform
+brew install pass
 
 # brew install lazydocker
 # brew install lazygit
+# brew install himalaya
 
 # Install optional packages
 # brew install docker --cask
