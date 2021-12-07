@@ -37,7 +37,6 @@ brew install pinentry-mac
 echo "pinentry-program /opt/homebrew/bin/pinentry-mac" >> ~/.gnupg/gpg-agent.conf
 killall gpg-agent
 
-
 # Install more recent versions of some macOS tools.
 brew install grep
 brew install openssh
@@ -77,6 +76,13 @@ brew install pass
 
 # Fix pyenv issues
 brew install zlib bzip2
+
+# Install file extension modifier
+brew install duti
+
+# Modify extensions
+chmod +x duti.sh
+source duti.sh
 
 # Setup pyenv
 pyenv install 3.9.7
