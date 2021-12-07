@@ -2,6 +2,7 @@ duti -s com.microsoft.VSCode .c all
 duti -s com.microsoft.VSCode .cpp all
 duti -s com.microsoft.VSCode .cs all
 duti -s com.microsoft.VSCode .css all
+duti -s com.microsoft.VSCode .csv all
 duti -s com.microsoft.VSCode .go all
 duti -s com.microsoft.VSCode .java all
 duti -s com.microsoft.VSCode .js all
