@@ -5,6 +5,9 @@ duti -s com.microsoft.VSCode .css all
 duti -s com.microsoft.VSCode .go all
 duti -s com.microsoft.VSCode .java all
 duti -s com.microsoft.VSCode .js all
+duti -s com.microsoft.VSCode .jsx all
+duti -s com.microsoft.VSCode .ts all
+duti -s com.microsoft.VSCode .tsx all
 duti -s com.microsoft.VSCode .sass all
 duti -s com.microsoft.VSCode .scss all
 duti -s com.microsoft.VSCode .less all
