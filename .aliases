@@ -47,3 +47,5 @@ alias airport='/System/Library/PrivateFrameworks/Apple80211.framework/Versions/C
 # For example, to list all directories that contain a certain file:
 # find . -name .gitattributes | map dirname
 alias map="xargs -n1"
+
+alias vscode=\"/Applications/Visual\\ Studio\\ Code.app/contents/Resources/app/bin/code\"

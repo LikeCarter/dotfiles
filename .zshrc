@@ -2,6 +2,9 @@
 export LANG='en_US.UTF-8';
 export LC_ALL='en_US.UTF-8';
 
+# Less bloated user...
+DEFAULT_USER=$(whoami)
+
 # Increase Bash history size. Allow 32³ entries; the default is 500.
 export HISTSIZE='32768';
 export HISTFILESIZE="${HISTSIZE}";
@@ -22,7 +25,7 @@ export NODE_REPL_MODE='sloppy';
 DISABLE_AUTO_UPDATE="true"
 export UPDATE_ZSH_DAYS=13
 export ZSH="$HOME/.oh-my-zsh"
-export ZSH_THEME="robbyrussell"
+export ZSH_THEME="powerlevel10k/powerlevel10k"
 
 source $ZSH/oh-my-zsh.sh
 
@@ -73,6 +76,7 @@ source ~/dotfiles/.extra
 source ~/dotfiles/.functions
 source ~/dotfiles/.aliases
 source ~/dotfiles/.chamber
+source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 # Create git signing key
 gpg --full-generate-key
