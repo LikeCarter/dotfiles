@@ -32,6 +32,18 @@ GIT_COMMITTER_EMAIL="\$GIT_AUTHOR_EMAIL"
 git config --global user.email "\$GIT_AUTHOR_EMAIL"
 EOF
 
+# In case computer is lost
+fancy_echo "Enter your contact email if this computer is lost:"
+read LOST_EMAIL
+
+sudo defaults write /Library/Preferences/com.apple.loginwindow LoginwindowText "If found, please contact $LOST_EMAIL"
+
+# Enable filevault encryption
+sudo fdesetup enable
+
+# Enable the firewall
+sudo defaults write /Library/Preferences/com.apple.alf globalstate -int 1
+
 # Disable Notification Center and remove the menu bar icon
 launchctl unload -w /System/Library/LaunchAgents/com.apple.notificationcenterui.plist 2> /dev/null
 
@@ -184,6 +196,15 @@ asdf install ruby latest
 asdf plugin add nodejs
 asdf install nodejs 16
 asdf global nodejs 16
+
+# To automate mac app store installs
+brew install mas
+
+# Install tailscale
+mas install 1475387142
+
+# Install magnet
+mas install 441258766
 
 # Setup node
 npm i -g yarn

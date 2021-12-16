@@ -16,16 +16,26 @@ git config --global user.signingkey xxxxxxxxxxxxxxxx
 git config --global commit.gpgsign true
 ```
 
+## MacOS App Store
+
+We install the following via `mas` cli:
+
+- Tailscale.app
+- Magnet.app
+
+## Brew
+
+We install the following via `brew` cli:
+
+- gnu-sed
+- etc.
+
 # Manual
 
 ## Chrome extensions
 
 - uBlock Origin
 - 1Password
-
-## App store
-
-- Magnet.app
 
 ## iTerm2
 
