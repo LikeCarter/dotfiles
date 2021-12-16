@@ -83,12 +83,6 @@ source ~/dotfiles/.functions
 source ~/dotfiles/.aliases
 source ~/dotfiles/.chamber
 
-# Create git signing key
-# gpg --full-generate-key
-# gpg --list-secret-keys --keyid-format=long
-git config --global user.signingkey 62D70959BFE1EE90
-git config --global commit.gpgsign true
-
 # This should always be last
 ZSH_HIGHLIGHT_MAXLENGTH=512
 ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets pattern cursor)

@@ -7,6 +7,15 @@ git clone https://github.com/LikeCarter/dotfiles ~/
 ./install.sh
 ```
 
+Generate a GPG key and start signing git commits:
+
+```
+gpg --full-generate-key
+gpg --list-secret-keys --keyid-format=long
+git config --global user.signingkey xxxxxxxxxxxxxxxx
+git config --global commit.gpgsign true
+```
+
 # Manual
 
 ## Chrome extensions
