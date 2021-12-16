@@ -9,14 +9,13 @@ fancy_echo() {
 
 trap 'ret=$?; test $ret -ne 0 && printf "failed\n\n" >&2; exit $ret' EXIT
 
-# Set the computer name:
-# fancy_echo "Enter your desired computer name:"
-# read COMPUTER_NAME
+fancy_echo "Enter your desired computer name:"
+read COMPUTER_NAME
 
-# sudo scutil --set ComputerName "$COMPUTER_NAME"
-# sudo scutil --set HostName "$COMPUTER_NAME"
-# sudo scutil --set LocalHostName "$COMPUTER_NAME"
-# sudo defaults write /Library/Preferences/SystemConfiguration/com.apple.smb.server NetBIOSName -string "$COMPUTER_NAME"
+sudo scutil --set ComputerName "$COMPUTER_NAME"
+sudo scutil --set HostName "$COMPUTER_NAME"
+sudo scutil --set LocalHostName "$COMPUTER_NAME"
+sudo defaults write /Library/Preferences/SystemConfiguration/com.apple.smb.server NetBIOSName -string "$COMPUTER_NAME"
 
 fancy_echo "Enter your desired email for git contributions:"
 read EMAIL
@@ -90,13 +89,16 @@ killall -KILL SystemUIServer
 fancy_echo "Installing zsh ..."
 sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 sudo chsh -s $(which zsh) $(whoami)
-git clone https://github.com/romkatv/powerlevel10k.git $ZSH_CUSTOM/themes/powerlevel10k
+
+# Install zsh syntax highlighting
+git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
+
 # Install my custom configuration file...
 cp ./.zshrc ~/.zshrc
 
 # Install command-line tools using Homebrew.
 fancy_echo "Installing Homebrew..."
-/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
 echo 'eval "$(/opt/homebrew/bin/brew shellenv)"' >> ~/.zprofile
 eval "$(/opt/homebrew/bin/brew shellenv)"
 
@@ -119,10 +121,10 @@ brew install moreutils
 # Install GNU `find`, `locate`, `updatedb`, and `xargs`, `g`-prefixed.
 brew install findutils
 # Install GNU `sed`, overwriting the built-in `sed`.
-brew install gnu-sed --with-default-names
+brew install gnu-sed
 
-# Install `wget` with IRI support.
-brew install wget --with-iri
+# Install `wget`
+brew install wget
 
 # Install GnuPG to enable PGP-signing commits.
 brew install gnupg
@@ -135,19 +137,38 @@ brew install grep
 brew install openssh
 brew install git
 
-# Setup git config
-cp .gitconfig ~/.gitconfig
-git config --global credential.helper osxkeychain
-
-# Update xcode
-xcode-select —-install
-
 # Install my workflow tools
 brew install aws-vault
 brew install go
 brew install htop
 brew install awscli
-brew install zsh-syntax-highlighting
+brew install terraform
+brew install duti # Install file extension modifier
+
+# Modify extensions
+chmod +x duti.sh
+source duti.sh
+
+# Setup git config
+cp .gitconfig ~/.gitconfig
+git config --global credential.helper osxkeychain
+
+# Install some of my preferred applications
+brew install 1password
+brew install google-chrome
+brew install iterm2
+brew install visual-studio-code
+brew install slack
+brew install spotify
+
+# brew install lazydocker
+# brew install lazygit
+
+# Install optional packages
+brew install docker
+
+# Update xcode
+xcode-select —-install
 
 # Install asdf
 brew install asdf
@@ -164,27 +185,22 @@ asdf plugin add nodejs
 asdf install nodejs 16
 asdf global nodejs 16
 
+# Setup node
+npm i -g yarn
+
 # Setup python
 pip install --upgrade pip
 
 # Install chamber of secrets
-go get github.com/segmentio/chamber
+brew install chamber
 ./chamber.sh
 
 # Remove outdated versions from the cellar.
 brew cleanup
 
 # Setup aws-vault
-fancy_echo "Create your first aws-vault"
+fancy_echo "Create your first aws-vault:"
 read $awsvaultname
 aws-vault add $awsvaultname
 
-fancy_echo "Open app store and install any apps you need: Magnet"
-fancy_echo "Install chrome extensions: uBlock Origin and 1Password"
-
-fancy_echo "By default, word jumps (option + → or ←) and word deletions (option + backspace) do not work. To enable these, go to iTerm → Preferences → Profiles → Keys → Presets... → Natural Text Editing → Boom! Head explodes"
-fancy_echo "Also set (ctrl + b or ctrl + f) for word jumps and word deletions (ctrl + w)..."
-
-fancy_echo "There is a nice iTerm theme in this repository as well you must install manually..."
-
-fancy_echo "Close this terminal and open iTerm2"
+open -a iTerm .

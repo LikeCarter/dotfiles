@@ -1,0 +1,16 @@
+name: Pre-Commit Checks
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+
+jobs:
+  pre-commit:
+    runs-on: ubuntu-latest
+    name: Check all files with pre-commit
+    env:
+      SKIP: no-commit-to-branch
+    steps:
+      - uses: actions/checkout@v2
+      - uses: pre-commit/action@v2.0.0
