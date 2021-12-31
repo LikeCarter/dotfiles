@@ -37,7 +37,6 @@ brew install pinentry-mac
 echo "pinentry-program /opt/homebrew/bin/pinentry-mac" >> ~/.gnupg/gpg-agent.conf
 killall gpg-agent
 
-
 # Install more recent versions of some macOS tools.
 brew install grep
 brew install openssh
@@ -50,6 +49,7 @@ brew install git
 # brew install iterm2
 # brew install visual-studio-code
 # brew install slack
+brew install stats
 
 # Setup git config
 cp .gitconfig ~/.gitconfig
