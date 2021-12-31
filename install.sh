@@ -173,6 +173,8 @@ brew install visual-studio-code
 brew install slack
 brew install spotify
 
+brew install stats
+
 # brew install lazydocker
 # brew install lazygit
 
@@ -184,7 +186,8 @@ xcode-select —-install
 
 # Install asdf
 brew install asdf
-echo -e "\n. $(brew --prefix asdf)/libexec/asdf.sh" >> ${ZDOTDIR:-~}/.zshrc
+echo -e "\n. $BREW_PREFIX/libexec/asdf.sh" >> ${ZDOTDIR:-~}/.zshrc
+echo -e "\n. $BREW_PREFIX/etc/bash_completion.d/asdf.bash" >> ${ZDOTDIR:-~}/.zshrc
 
 fancy_echo "Installing via asdf: python, ruby, and nodejs..."
 
