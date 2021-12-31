@@ -29,9 +29,15 @@ source $ZSH/oh-my-zsh.sh
 # Initialize homebrew
 eval "$(/opt/homebrew/bin/brew shellenv)"
 
-# Set paths
+# Paths and go
 export GOPATH=~/go
 export PATH=$HOME/bin:/usr/local/bin:$GOPATH/bin:/opt/homebrew/sbin:$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH
+
+# Paths and sed
+export PATH="/opt/homebrew/opt/gnu-sed/libexec/gnubin:$PATH"
+
+# Paths and vscode
+export PATH="$PATH:/Applications/Visual Studio Code.app/Contents/Resources/app/bin"
 
 # Setup the nvm package
 export NVM_DIR="$HOME/.nvm"
@@ -44,7 +50,7 @@ source /opt/homebrew/opt/nvm/nvm.sh
 export PYENV_ROOT="$HOME/.pyenv"
 export PATH="$PYENV_ROOT/bin:$PATH"
 if command -v pyenv 1>/dev/null 2>&1; then
-  eval "$(pyenv init --path)"
+  eval "$(pyenv init -)"
   eval "$(pyenv virtualenv-init -)"
 fi
 
@@ -77,8 +83,7 @@ source ~/dotfiles/.functions
 source ~/dotfiles/.aliases
 source ~/dotfiles/.chamber
 
-# Create git signing key
-# gpg --full-generate-key
-# gpg --list-secret-keys --keyid-format=long
-git config --global user.signingkey 62D70959BFE1EE90
-git config --global commit.gpgsign true
+# This should always be last
+ZSH_HIGHLIGHT_MAXLENGTH=512
+ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets pattern cursor)
+plugins=(git ruby zsh-syntax-highlighting)
