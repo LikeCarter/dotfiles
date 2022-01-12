@@ -185,9 +185,7 @@ brew install docker
 xcode-select —-install
 
 # Install asdf
-brew install asdf
-echo -e "\n. $BREW_PREFIX/libexec/asdf.sh" >> ${ZDOTDIR:-~}/.zshrc
-echo -e "\n. $BREW_PREFIX/etc/bash_completion.d/asdf.bash" >> ${ZDOTDIR:-~}/.zshrc
+brew install asdf # Autocomplese added as a zsh plugin.
 
 fancy_echo "Installing via asdf: python, ruby, and nodejs..."
 
@@ -197,8 +195,8 @@ asdf install python 3.9.4
 asdf plugin add ruby
 asdf install ruby latest
 asdf plugin add nodejs
-asdf install nodejs 16
-asdf global nodejs 16
+asdf install nodejs 16.13.2
+asdf global nodejs 16.13.2
 
 # To automate mac app store installs
 brew install mas
