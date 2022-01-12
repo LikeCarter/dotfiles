@@ -66,7 +66,7 @@ DISABLE_AUTO_UPDATE="true"
 ZSH_HIGHLIGHT_MAXLENGTH=512
 ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets pattern cursor)
 
-plugins=(git ruby asdf zsh-syntax-highlighting)
+plugins=(git ruby zsh-syntax-highlighting)
 
 export UPDATE_ZSH_DAYS=13
 export ZSH="$HOME/.oh-my-zsh"
