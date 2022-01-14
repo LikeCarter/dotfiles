@@ -194,11 +194,15 @@ fancy_echo "Installing via asdf: python, ruby, and nodejs..."
 # Install asdf plugins
 asdf plugin add python
 asdf install python 3.9.4
+asdf global python 3.9.4
 asdf plugin add ruby
 asdf install ruby latest
 asdf plugin add nodejs
-asdf install nodejs 16
-asdf global nodejs 16
+asdf install nodejs 16.13.1
+asdf global nodejs 16.13.1
+
+asdf reshim
+pip install --upgrade pip
 
 # To automate mac app store installs
 brew install mas
