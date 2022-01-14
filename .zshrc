@@ -19,13 +19,6 @@ export NODE_REPL_HISTORY_SIZE='32768';
 # Use sloppy mode by default, matching web browsers.
 export NODE_REPL_MODE='sloppy';
 
-DISABLE_AUTO_UPDATE="true"
-export UPDATE_ZSH_DAYS=13
-export ZSH="$HOME/.oh-my-zsh"
-export ZSH_THEME="robbyrussell"
-
-source $ZSH/oh-my-zsh.sh
-
 # Initialize homebrew
 eval "$(/opt/homebrew/bin/brew shellenv)"
 
@@ -68,6 +61,15 @@ source ~/dotfiles/.aliases
 source ~/dotfiles/.chamber
 
 # This should always be last
+
+DISABLE_AUTO_UPDATE="true"
 ZSH_HIGHLIGHT_MAXLENGTH=512
 ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets pattern cursor)
+
 plugins=(git ruby zsh-syntax-highlighting)
+
+export UPDATE_ZSH_DAYS=13
+export ZSH="$HOME/.oh-my-zsh"
+export ZSH_THEME="robbyrussell"
+
+source $ZSH/oh-my-zsh.sh

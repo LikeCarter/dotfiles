@@ -123,6 +123,9 @@ brew upgrade
 # Save Homebrew’s installed location.
 BREW_PREFIX=$(brew --prefix)
 
+echo "Make sure you are running this with sudo:"
+sudo chown -R $(whoami) $(brew --prefix)/*
+
 # Install GNU core utilities (those that come with macOS are outdated).
 # Don’t forget to add `$(brew --prefix coreutils)/libexec/gnubin` to `$PATH`.
 brew install coreutils
@@ -186,8 +189,7 @@ xcode-select —-install
 
 # Install asdf
 brew install asdf
-echo -e "\n. $BREW_PREFIX/libexec/asdf.sh" >> ${ZDOTDIR:-~}/.zshrc
-echo -e "\n. $BREW_PREFIX/etc/bash_completion.d/asdf.bash" >> ${ZDOTDIR:-~}/.zshrc
+echo -e "\n. $(brew --prefix asdf)/libexec/asdf.sh" >> ${ZDOTDIR:-~}/.zshrc
 
 fancy_echo "Installing via asdf: python, ruby, and nodejs..."
 
@@ -198,8 +200,8 @@ asdf global python 3.9.4
 asdf plugin add ruby
 asdf install ruby latest
 asdf plugin add nodejs
-asdf install nodejs 16.13.1
-asdf global nodejs 16.13.1
+asdf install nodejs 16.13.2
+asdf global nodejs 16.13.2
 
 asdf reshim
 pip install --upgrade pip
