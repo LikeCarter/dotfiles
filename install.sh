@@ -197,9 +197,14 @@ fancy_echo "Installing via asdf: python, ruby, and nodejs..."
 asdf plugin add python
 asdf install python 3.9.4
 asdf global python 3.9.4
+asdf plugin add ruby
+asdf install ruby latest
 asdf plugin add nodejs
 asdf install nodejs 16.13.2
 asdf global nodejs 16.13.2
+
+asdf reshim
+pip install --upgrade pip
 
 # Install pdm
 chown -R $(whoami) ~/.local
