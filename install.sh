@@ -232,6 +232,10 @@ brew install chamber
 # Remove outdated versions from the cellar.
 brew cleanup
 
+# Fonts
+brew tap homebrew/cask-fonts
+brew install --cask font-jetbrains-mono
+
 # Setup aws-vault
 fancy_echo "Create your first aws-vault:"
 read $awsvaultname
