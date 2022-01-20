@@ -201,6 +201,10 @@ asdf plugin add nodejs
 asdf install nodejs 16.13.2
 asdf global nodejs 16.13.2
 
+# Install pdm
+chown -R $(whoami) ~/.local
+brew install pdm
+
 # To automate mac app store installs
 brew install mas
 

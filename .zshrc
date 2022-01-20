@@ -73,3 +73,6 @@ export ZSH="$HOME/.oh-my-zsh"
 export ZSH_THEME="robbyrussell"
 
 source $ZSH/oh-my-zsh.sh
+
+# Setup pdm
+pdm --pep582 > /dev/null
