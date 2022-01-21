@@ -1,12 +1,16 @@
 # Dotfiles
 
-This should be cloned to ~/dotfiles.
+## Setup
+
+This repository should be cloned to ~/dotfiles.
 
 ```sh
 cd ~
 git clone https://github.com/LikeCarter/dotfiles
 ./dotfiles/install.sh
 ```
+
+## Optional
 
 ### **Add Git GPG Key**
 
@@ -23,40 +27,10 @@ git config --global commit.gpgsign true
 2. In the E**ditor: Font Family** input box type `JetBrains Mono`, replacing any content.
 3. To enable ligatures, go to **Editor: Font Ligatures**, click **Edit in settings.json**, and copy this line `"editor.fontLigatures": true` into json file.
 
-## MacOS App Store
 
-We install the following via `mas` cli:
+## Guides
 
-- Tailscale.app
-- Magnet.app
-
-## Brew
-
-We install the following via `brew` cli:
-
-- gnu-sed
-- etc.
-
-# Manual
-
-## Chrome extensions
-
-- uBlock Origin
-- 1Password
-
-## iTerm2
-
-By default, word jumps (option + → or ←) and word deletions (option + backspace) do not work.
-
-To enable these: go to iTerm → Preferences → Profiles → Keys → Presets... → Natural Text Editing.
-You may also set (ctrl + b or ctrl + f) for word jumps and word deletions (ctrl + w).
-
-### TODO
-
-Setup iterm2 theme automagically...
-Setup GPG signing key automagically...
-Setup keyboard shortcuts automagically...
-Setup vscode extensions + settings automagically...
+[iTerm2 Shortcuts](https://gist.github.com/squarism/ae3613daf5c01a98ba3a#file-iterm2-md)
 
 ## License
 
