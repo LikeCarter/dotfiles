@@ -1,5 +1,8 @@
 #!/usr/bin/env bash
 
+# Update MacOS software tools
+softwareupdate --all --install --force
+
 fancy_echo() {
   local fmt="$1"; shift
 
