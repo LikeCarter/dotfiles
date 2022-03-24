@@ -224,8 +224,8 @@ mas install 1475387142
 # Install magnet
 mas install 441258766
 
-# Setup node
-npm i -g yarn
+# Setup pnpm
+curl -f https://get.pnpm.io/v6.16.js | node - add --global pnpm
 
 # Setup python
 pip install --upgrade pip

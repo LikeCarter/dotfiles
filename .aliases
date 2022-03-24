@@ -51,4 +51,5 @@ alias map="xargs -n1"
 # Alias tailscale baby
 alias tailscale="/Applications/Tailscale.app/Contents/MacOS/Tailscale"
 
-
+# Alias pnpm
+alias p=pnpm
