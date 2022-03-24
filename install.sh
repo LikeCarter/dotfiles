@@ -155,6 +155,8 @@ brew install grep
 brew install openssh
 brew install git
 
+brew install pnpm
+
 # Install my workflow tools
 brew install aws-vault
 brew install go
