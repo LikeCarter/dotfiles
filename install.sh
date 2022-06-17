@@ -241,6 +241,9 @@ brew cleanup
 brew tap homebrew/cask-fonts
 brew install --cask font-jetbrains-mono
 
+# TouchID to sudo
+echo 'auth sufficient pam_tid.so' | sudo tee -a /etc/pam.d/sudo
+
 # Setup aws-vault
 fancy_echo "Create your first aws-vault:"
 read $awsvaultname
