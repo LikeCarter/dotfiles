@@ -144,6 +144,8 @@ brew install gnu-sed
 # Install `wget`
 brew install wget
 
+brew install fd
+
 # Install GnuPG to enable PGP-signing commits.
 brew install gnupg
 brew install pinentry-mac
