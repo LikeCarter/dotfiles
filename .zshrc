@@ -58,7 +58,6 @@ function json_colour() {
 # Add the rest of my configs
 source ~/dotfiles/.functions
 source ~/dotfiles/.aliases
-source ~/dotfiles/.chamber
 
 # This should always be last
 
@@ -73,6 +72,3 @@ export ZSH="$HOME/.oh-my-zsh"
 export ZSH_THEME="robbyrussell"
 
 source $ZSH/oh-my-zsh.sh
-
-# Setup pdm
-pdm --pep582 > /dev/null

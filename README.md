@@ -19,6 +19,7 @@ gpg --full-generate-key
 gpg --list-secret-keys --keyid-format=long
 git config --global user.signingkey xxxxxxxxxxxxxxxx
 git config --global commit.gpgsign true
+git config --global tag.gpgSign true
 ```
 
 ### **Add Jetbrains Mono to Visual Studio Code**

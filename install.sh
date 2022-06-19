@@ -38,8 +38,10 @@ EOF
 # In case computer is lost
 fancy_echo "Enter your contact email if this computer is lost:"
 read LOST_EMAIL
+fancy_echo "Enter your phone if this computer is lost:"
+read LOST_NUMBER
 
-sudo defaults write /Library/Preferences/com.apple.loginwindow LoginwindowText "If found, please contact $LOST_EMAIL"
+sudo defaults write /Library/Preferences/com.apple.loginwindow LoginwindowText "If found, please contact $LOST_EMAIL or $LOST_NUMBER"
 
 # Enable filevault encryption
 sudo fdesetup enable
@@ -142,9 +144,7 @@ brew install findutils
 brew install gnu-sed
 
 # Install `wget`
-brew install wget
-
-brew install fd
+# brew install wget
 
 # Install GnuPG to enable PGP-signing commits.
 brew install gnupg
@@ -157,12 +157,11 @@ brew install grep
 brew install openssh
 brew install git
 
-brew install pnpm
-
 # Install my workflow tools
 brew install aws-vault
 brew install go
 brew install htop
+brew install fd
 brew install awscli
 brew install terraform
 brew install duti # Install file extension modifier
@@ -177,22 +176,17 @@ git config --global credential.helper osxkeychain
 
 # Install some of my preferred applications
 brew install 1password
-brew install google-chrome
+# brew install google-chrome
 brew install iterm2
 brew install visual-studio-code
 brew install slack
 brew install spotify
 
-brew install stats
-
-# brew install lazydocker
-# brew install lazygit
-
 # Install optional packages
-brew install docker
+# brew install docker
 
 # Update xcode
-xcode-select —-install
+xcode-select --install
 
 # Install asdf
 brew install asdf
@@ -202,20 +196,22 @@ fancy_echo "Installing via asdf: python, ruby, and nodejs..."
 
 # Install asdf plugins
 asdf plugin add python
-asdf install python 3.9.4
-asdf global python 3.9.4
+asdf install python 3.10
+asdf global python 3.10
 asdf plugin add ruby
 asdf install ruby latest
 asdf plugin add nodejs
-asdf install nodejs 16.13.2
-asdf global nodejs 16.13.2
+asdf install nodejs 16.16.0
+asdf global nodejs 16.16.0
 
 asdf reshim
+
+# Setup python
 pip install --upgrade pip
 
 # Install pdm
-chown -R $(whoami) ~/.local
-brew install pdm
+# chown -R $(whoami) ~/.local
+# brew install pdm
 
 # To automate mac app store installs
 brew install mas
@@ -227,14 +223,7 @@ mas install 1475387142
 mas install 441258766
 
 # Setup pnpm
-brew install pnpm
-
-# Setup python
-pip install --upgrade pip
-
-# Install chamber of secrets
-brew install chamber
-./chamber.sh
+npm i -g pnpm
 
 # Remove outdated versions from the cellar.
 brew cleanup
@@ -244,7 +233,7 @@ brew tap homebrew/cask-fonts
 brew install --cask font-jetbrains-mono
 
 # TouchID to sudo
-echo 'auth sufficient pam_tid.so' | sudo tee -a /etc/pam.d/sudo
+echo -e "auth sufficient pam_tid.so\n$(cat /etc/pam.d/sudo)" | sudo tee /etc/pam.d/sudo
 
 # Setup aws-vault
 fancy_echo "Create your first aws-vault:"
