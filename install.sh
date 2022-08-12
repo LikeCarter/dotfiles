@@ -144,6 +144,8 @@ brew install gnu-sed
 # Install `wget`
 brew install wget
 
+brew install fd
+
 # Install GnuPG to enable PGP-signing commits.
 brew install gnupg
 brew install pinentry-mac
@@ -225,7 +227,7 @@ mas install 1475387142
 mas install 441258766
 
 # Setup pnpm
-curl -f https://get.pnpm.io/v6.16.js | node - add --global pnpm
+brew install pnpm
 
 # Setup python
 pip install --upgrade pip
@@ -241,9 +243,139 @@ brew cleanup
 brew tap homebrew/cask-fonts
 brew install --cask font-jetbrains-mono
 
+# TouchID to sudo
+echo 'auth sufficient pam_tid.so' | sudo tee -a /etc/pam.d/sudo
+
 # Setup aws-vault
 fancy_echo "Create your first aws-vault:"
 read $awsvaultname
 aws-vault add $awsvaultname
 
 open -a iTerm .
+
+
+# ----------------------------------------------------------
+# ----Disables signing in as Guest from the login screen----
+# ----------------------------------------------------------
+echo '--- Disables signing in as Guest from the login screen'
+sudo defaults write /Library/Preferences/com.apple.loginwindow GuestEnabled -bool NO
+# ----------------------------------------------------------
+
+
+# ----------------------------------------------------------
+# -------Disables Guest access to file shares over AF-------
+# ----------------------------------------------------------
+echo '--- Disables Guest access to file shares over AF'
+sudo defaults write /Library/Preferences/SystemConfiguration/com.apple.smb.server AllowGuestAccess -bool NO
+# ----------------------------------------------------------
+
+
+# ----------------------------------------------------------
+# ------Disables Guest access to file shares over SMB-------
+# ----------------------------------------------------------
+echo '--- Disables Guest access to file shares over SMB'
+sudo defaults write /Library/Preferences/com.apple.AppleFileServer guestAccess -bool NO
+# ----------------------------------------------------------
+
+
+# ----------------------------------------------------------
+# -Disable remote login (incoming SSH and SFTP connections)-
+# ----------------------------------------------------------
+echo '--- Disable remote login (incoming SSH and SFTP connections)'
+echo 'yes' | sudo systemsetup -setremotelogin off
+# ----------------------------------------------------------
+
+
+# ----------------------------------------------------------
+# --------------Disable insecure TFTP service---------------
+# ----------------------------------------------------------
+echo '--- Disable insecure TFTP service'
+sudo launchctl disable 'system/com.apple.tftpd'
+# ----------------------------------------------------------
+
+
+# ----------------------------------------------------------
+# ----------Disable Bonjour multicast advertising-----------
+# ----------------------------------------------------------
+echo '--- Disable Bonjour multicast advertising'
+sudo defaults write /Library/Preferences/com.apple.mDNSResponder.plist NoMulticastAdvertisements -bool true
+# ----------------------------------------------------------
+
+
+# ----------------------------------------------------------
+# -------------Disable insecure telnet protocol-------------
+# ----------------------------------------------------------
+echo '--- Disable insecure telnet protocol'
+sudo launchctl disable system/com.apple.telnetd
+# ----------------------------------------------------------
+
+
+# ----------------------------------------------------------
+# --Disable sharing of local printers with other computers--
+# ----------------------------------------------------------
+echo '--- Disable sharing of local printers with other computers'
+cupsctl --no-share-printers
+# ----------------------------------------------------------
+
+
+# ----------------------------------------------------------
+# -Disable printing from any address including the Internet-
+# ----------------------------------------------------------
+echo '--- Disable printing from any address including the Internet'
+cupsctl --no-remote-any
+# ----------------------------------------------------------
+
+
+# ----------------------------------------------------------
+# ----------Disable remote printer administration-----------
+# ----------------------------------------------------------
+echo '--- Disable remote printer administration'
+cupsctl --no-remote-admin
+# ----------------------------------------------------------
+
+
+# ----------------------------------------------------------
+# ---------------Enable application firewall----------------
+# ----------------------------------------------------------
+echo '--- Enable application firewall'
+/usr/libexec/ApplicationFirewall/socketfilterfw --setglobalstate on
+sudo defaults write /Library/Preferences/com.apple.alf globalstate -bool true
+defaults write com.apple.security.firewall EnableFirewall -bool true
+# ----------------------------------------------------------
+
+
+# ----------------------------------------------------------
+# -----------------Turn on firewall logging-----------------
+# ----------------------------------------------------------
+echo '--- Turn on firewall logging'
+/usr/libexec/ApplicationFirewall/socketfilterfw --setloggingmode on
+sudo defaults write /Library/Preferences/com.apple.alf loggingenabled -bool true
+# ----------------------------------------------------------
+
+
+# ----------------------------------------------------------
+# -------------------Turn on stealth mode-------------------
+# ----------------------------------------------------------
+echo '--- Turn on stealth mode'
+/usr/libexec/ApplicationFirewall/socketfilterfw --setstealthmode on
+sudo defaults write /Library/Preferences/com.apple.alf stealthenabled -bool true
+defaults write com.apple.security.firewall EnableStealthMode -bool true
+# ----------------------------------------------------------
+
+
+# Prevent automatically allowing incoming connections to signed apps
+echo '--- Prevent automatically allowing incoming connections to signed apps'
+sudo defaults write /Library/Preferences/com.apple.alf allowsignedenabled -bool false
+# ----------------------------------------------------------
+
+
+# Prevent automatically allowing incoming connections to downloaded signed apps
+echo '--- Prevent automatically allowing incoming connections to downloaded signed apps'
+sudo defaults write /Library/Preferences/com.apple.alf allowdownloadsignedenabled -bool false
+# ----------------------------------------------------------
+
+# Prevent automatically allowing incoming connections to downloaded signed apps
+echo '--- Allow TouchID for Sudo'
+echo -e "auth sufficient pam_tid.so\n$(cat /etc/pam.d/sudo)" | sudo tee /etc/pam.d/sudo
+# ----------------------------------------------------------
+
