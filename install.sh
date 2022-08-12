@@ -368,3 +368,29 @@ echo '--- Allow TouchID for Sudo'
 echo -e "auth sufficient pam_tid.so\n$(cat /etc/pam.d/sudo)" | sudo tee /etc/pam.d/sudo
 # ----------------------------------------------------------
 
+# ----------------------------------------------------------
+# ---------Disable Internet based spell correction----------
+# ----------------------------------------------------------
+echo '--- Disable Internet based spell correction'
+defaults write NSGlobalDomain WebAutomaticSpellingCorrectionEnabled -bool false
+# ----------------------------------------------------------
+
+# ----------------------------------------------------------
+# ---------Deactivate the Remote Management Service---------
+# ----------------------------------------------------------
+echo '--- Deactivate the Remote Management Service'
+sudo /System/Library/CoreServices/RemoteManagement/ARDAgent.app/Contents/Resources/kickstart -deactivate -stop
+# ----------------------------------------------------------
+
+
+# ----------------------------------------------------------
+# -----------Remove Apple Remote Desktop Settings-----------
+# ----------------------------------------------------------
+echo '--- Remove Apple Remote Desktop Settings'
+sudo rm -rf /var/db/RemoteManagement
+sudo defaults delete /Library/Preferences/com.apple.RemoteDesktop.plist
+defaults delete ~/Library/Preferences/com.apple.RemoteDesktop.plist
+sudo rm -r /Library/Application\ Support/Apple/Remote\ Desktop/
+rm -r ~/Library/Application\ Support/Remote\ Desktop/
+rm -r ~/Library/Containers/com.apple.RemoteDesktop
+# --------------
