@@ -72,3 +72,5 @@ export ZSH="$HOME/.oh-my-zsh"
 export ZSH_THEME="robbyrussell"
 
 source $ZSH/oh-my-zsh.sh
+
+source $(brew --prefix asdf)/libexec/asdf.sh

@@ -28,11 +28,11 @@ read AUTHOR_NAME
 cat > .extra << EOF
 #!/usr/bin/env bash
 GIT_AUTHOR_NAME="$AUTHOR_NAME"
-GIT_COMMITTER_NAME="\$GIT_AUTHOR_NAME"
-git config --global user.name "\$GIT_AUTHOR_NAME"
+GIT_COMMITTER_NAME="$AUTHOR_NAME"
+git config --global user.name "$AUTHOR_NAME"
 GIT_AUTHOR_EMAIL="$EMAIL"
-GIT_COMMITTER_EMAIL="\$GIT_AUTHOR_EMAIL"
-git config --global user.email "\$GIT_AUTHOR_EMAIL"
+GIT_COMMITTER_EMAIL="$EMAIL"
+git config --global user.email "$EMAIL"
 EOF
 
 # In case computer is lost
@@ -381,16 +381,3 @@ defaults write NSGlobalDomain WebAutomaticSpellingCorrectionEnabled -bool false
 echo '--- Deactivate the Remote Management Service'
 sudo /System/Library/CoreServices/RemoteManagement/ARDAgent.app/Contents/Resources/kickstart -deactivate -stop
 # ----------------------------------------------------------
-
-
-# ----------------------------------------------------------
-# -----------Remove Apple Remote Desktop Settings-----------
-# ----------------------------------------------------------
-echo '--- Remove Apple Remote Desktop Settings'
-sudo rm -rf /var/db/RemoteManagement
-sudo defaults delete /Library/Preferences/com.apple.RemoteDesktop.plist
-defaults delete ~/Library/Preferences/com.apple.RemoteDesktop.plist
-sudo rm -r /Library/Application\ Support/Apple/Remote\ Desktop/
-rm -r ~/Library/Application\ Support/Remote\ Desktop/
-rm -r ~/Library/Containers/com.apple.RemoteDesktop
-# --------------

@@ -1,5 +1,10 @@
 #!/usr/bin/env bash
 
+# Generate a secret
+function secret() {
+	LC_ALL=C tr -dc A-Za-z0-9 </dev/urandom | head -c 32 ; echo ''
+}
+
 # Create a new directory and enter it
 function mkd() {
 	mkdir -p "$@" && cd "$_";
