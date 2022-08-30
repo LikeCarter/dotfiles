@@ -35,6 +35,8 @@ GIT_COMMITTER_EMAIL="$EMAIL"
 git config --global user.email "$EMAIL"
 EOF
 
+git config --global --add --bool push.autoSetupRemote true
+
 # In case computer is lost
 fancy_echo "Enter your contact email if this computer is lost:"
 read LOST_EMAIL
@@ -220,7 +222,7 @@ brew install mas
 mas install 1475387142
 
 # Install magnet
-mas install 441258766
+# mas install 441258766
 
 # Setup pnpm
 npm i -g pnpm
