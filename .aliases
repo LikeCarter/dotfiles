@@ -56,3 +56,5 @@ alias p=pnpm
 
 alias ls="exa --group-directories-first"
 alias ll="exa --group-directories-first -l"
+
+alias brew="env PATH=\"\${PATH//.asdf/shims:/}\" brew"

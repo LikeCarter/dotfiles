@@ -159,6 +159,7 @@ brew install grep
 brew install openssh
 brew install git
 
+
 # Install my workflow tools
 brew install aws-vault
 brew install go
@@ -198,13 +199,18 @@ fancy_echo "Installing via asdf: python, ruby, and nodejs..."
 
 # Install asdf plugins
 asdf plugin add python
-asdf install python 3.10
-asdf global python 3.10
+asdf install python 3.9.15
+asdf global python 3.9.15
 asdf plugin add ruby
 asdf install ruby latest
 asdf plugin add nodejs
-asdf install nodejs 16.16.0
-asdf global nodejs 16.16.0
+asdf install nodejs latest
+asdf global nodejs latest
+
+asdf plugin-add poetry https://github.com/asdf-community/asdf-poetry.git
+asdf install poetry latest
+# Make compatible with asdf.
+poetry config virtualenvs.prefer-active-python true
 
 asdf reshim
 
