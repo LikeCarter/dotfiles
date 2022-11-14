@@ -53,3 +53,6 @@ alias tailscale="/Applications/Tailscale.app/Contents/MacOS/Tailscale"
 
 # Alias pnpm
 alias p=pnpm
+
+alias ls="exa --group-directories-first"
+alias ll="exa --group-directories-first -l"
