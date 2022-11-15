@@ -12,15 +12,22 @@ git clone https://github.com/LikeCarter/dotfiles
 
 ## Optional
 
-### **Add Git GPG Key**
+### **Add git signing**
 
 ```
-gpg --full-generate-key
-gpg --list-secret-keys --keyid-format=long
-git config --global user.signingkey xxxxxxxxxxxxxxxx
+git config --global gpg.program $(which gpg)
 git config --global commit.gpgsign true
 git config --global tag.gpgSign true
+
+gpg --full-generate-key
+gpg -K --keyid-format SHORT
+# sec rsa4096/######## YYYY-MM-DD [SC] [expires: YYYY-MM-DD]
+git config --global user.signingkey ########
+gpg --armor --export ########
 ```
+
+Login into Github.com and go to your settings, SSH and GPG Keys, and add your GPG key from the page.
+
 
 ### **Add Jetbrains Mono to Visual Studio Code**
 
