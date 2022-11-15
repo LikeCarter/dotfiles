@@ -15,9 +15,14 @@ git clone https://github.com/LikeCarter/dotfiles
 ### **Add git signing**
 
 ```
-git config --global gpg.program $(which gpg)
+brew install gpg2 gnupg pinentry-mac       
+echo "pinentry-program $(brew --prefix)/bin/pinentry-mac" > ~/.gnupg/gpg-agent.conf
+echo 'use-agent' > ~/.gnupg/gpg.conf
+chmod 700 ~/.gnupg
+killall gpg-agent
 git config --global commit.gpgsign true
 git config --global tag.gpgSign true
+git config --global gpg.program $(which gpg)
 
 gpg --full-generate-key
 gpg -K --keyid-format SHORT
