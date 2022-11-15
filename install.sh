@@ -156,6 +156,7 @@ chmod 700 ~/.gnupg
 killall gpg-agent
 git config --global commit.gpgsign true
 git config --global tag.gpgSign true
+git config --global gpg.program $(which gpg)
 
 # Install more recent versions of some macOS tools.
 brew install grep
