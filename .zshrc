@@ -74,3 +74,6 @@ export ZSH_THEME="robbyrussell"
 source $ZSH/oh-my-zsh.sh
 
 source $(brew --prefix asdf)/libexec/asdf.sh
+
+# You can use the OP_BIOMETRIC_UNLOCK environment variable to temporarily toggle the 1Password CLI and 1Password app integration on or off.
+OP_BIOMETRIC_UNLOCK_ENABLED=true
