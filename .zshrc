@@ -55,7 +55,7 @@ function json_colour() {
     echo "$1" | pygmentize -l json
 }
 
-# Add the rest of my configs
+# Add the rest of configs
 source ~/dotfiles/.functions
 source ~/dotfiles/.aliases
 
@@ -72,7 +72,6 @@ export ZSH="$HOME/.oh-my-zsh"
 export ZSH_THEME="robbyrussell"
 
 source $ZSH/oh-my-zsh.sh
-
 source $(brew --prefix asdf)/libexec/asdf.sh
 
 # You can use the OP_BIOMETRIC_UNLOCK environment variable to temporarily toggle the 1Password CLI and 1Password app integration on or off.

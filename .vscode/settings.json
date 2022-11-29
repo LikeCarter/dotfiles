@@ -10,12 +10,5 @@
     "other": true,
     "comments": true,
     "strings": true
-  },
-  "tailwindCSS.includeLanguages": {
-    "plaintext": "html",
-    "typescriptreact": "html",
-    "typescript": "html"
-  },
-  "tailwindCSS.emmetCompletions": true,
-  "tailwindCSS.colorDecorators": "on"
+  }
 }

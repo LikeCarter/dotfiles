@@ -1,12 +1,4 @@
 {
-  "recommendations": [
-    "esbenp.prettier-vscode",
-    "dbaeumer.vscode-eslint",
-    "editorconfig.editorconfig",
-    "mikestead.dotenv",
-    "mgmcdermott.vscode-language-babel",
-    "orta.vscode-jest",
-    "prisma.prisma"
-  ],
+  "recommendations": ["esbenp.prettier-vscode", "editorconfig.editorconfig"],
   "unwantedRecommendations": []
 }

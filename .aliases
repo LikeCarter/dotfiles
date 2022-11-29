@@ -48,7 +48,7 @@ alias airport='/System/Library/PrivateFrameworks/Apple80211.framework/Versions/C
 # find . -name .gitattributes | map dirname
 alias map="xargs -n1"
 
-# Alias tailscale baby
+# Alias tailscale
 alias tailscale="/Applications/Tailscale.app/Contents/MacOS/Tailscale"
 
 # Alias pnpm
