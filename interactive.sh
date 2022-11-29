@@ -156,7 +156,8 @@ brew install --cask font-jetbrains-mono
 # TouchID to sudo
 echo -e "auth sufficient pam_tid.so\n$(cat /etc/pam.d/sudo)" | sudo tee /etc/pam.d/sudo
 
-brew install 1password
+brew install --cask 1password/tap/1password-cli
+brew install --cask 1password
 brew install google-chrome
 brew install iterm2
 brew install visual-studio-code
@@ -176,6 +177,6 @@ gpg --list-secret-keys --keyid-format=long
 git config --global user.signingkey xxxxxxxxxxxxxxxx
 git config --global commit.gpgsign true
 git config --global tag.gpgSign true
-
+git config --global push.autoSetupRemote true
 
 open -a iTerm .
