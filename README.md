@@ -2,6 +2,8 @@
 
 ## Setup
 
+### Automatic
+
 This repository should be cloned and kept in `~`.
 
 ```sh
@@ -9,6 +11,10 @@ cd ~
 git clone https://github.com/LikeCarter/dotfiles
 ./dotfiles/interactive.sh
 ```
+
+### Manual
+
+[1Password Git Signing](https://developer.1password.com/docs/ssh/git-commit-signing/)
 
 ## License
 

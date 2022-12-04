@@ -1,3 +1,5 @@
+# Allow TouchID for Sudo
+echo "auth sufficient pam_tid.so\n$(cat /etc/pam.d/sudo)" | sudo tee /etc/pam.d/sudo
 
 # Disables signing in as Guest from the login screen
 sudo defaults write /Library/Preferences/com.apple.loginwindow GuestEnabled -bool NO
@@ -49,11 +51,11 @@ sudo defaults write /Library/Preferences/com.apple.alf allowsignedenabled -bool 
 # Prevent automatically allowing incoming connections to downloaded signed apps
 sudo defaults write /Library/Preferences/com.apple.alf allowdownloadsignedenabled -bool false
 
-# Allow TouchID for Sudo
-echo -e "auth sufficient pam_tid.so\n$(cat /etc/pam.d/sudo)" | sudo tee /etc/pam.d/sudo
-
 # Disable Internet based spell correction
 defaults write NSGlobalDomain WebAutomaticSpellingCorrectionEnabled -bool false
 
 # Deactivate the Remote Management Service
 sudo /System/Library/CoreServices/RemoteManagement/ARDAgent.app/Contents/Resources/kickstart -deactivate -stop
+
+# Enable FileVault encryption.
+sudo fdesetup enable

@@ -1,3 +1,4 @@
+# Modify default extensions opener.
 duti -s com.microsoft.VSCode .c all
 duti -s com.microsoft.VSCode .cpp all
 duti -s com.microsoft.VSCode .cs all
