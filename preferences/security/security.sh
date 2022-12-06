@@ -1,5 +1,8 @@
 # Allow TouchID for Sudo
-echo "auth sufficient pam_tid.so\n$(cat /etc/pam.d/sudo)" | sudo tee /etc/pam.d/sudo
+sudo tee /etc/pam.d/sudo << EndOfMessage
+auth sufficient pam_tid.so
+$(cat /etc/pam.d/sudo)
+EndOfMessage
 
 # Disables signing in as Guest from the login screen
 sudo defaults write /Library/Preferences/com.apple.loginwindow GuestEnabled -bool NO
@@ -11,7 +14,8 @@ sudo defaults write /Library/Preferences/SystemConfiguration/com.apple.smb.serve
 sudo defaults write /Library/Preferences/com.apple.AppleFileServer guestAccess -bool NO
 
 # Disable remote login (incoming SSH and SFTP connections)
-echo 'yes' | sudo systemsetup -setremotelogin off
+echo "Type 'yes' to the following prompt:"
+sudo systemsetup -setremotelogin off
 
 # Disable insecure TFTP service
 sudo launchctl disable 'system/com.apple.tftpd'

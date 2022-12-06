@@ -1,5 +1,15 @@
 #!/usr/bin/env bash
 
+# Install zsh first.
+# This may exit the current shell, so we run it first, so we don't lose progress.
+echo "Installing zsh ..."
+sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+sudo chsh -s $(which zsh) $(whoami)
+# Install zsh syntax-highlighting.
+git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
+# Install zshrc configuration.
+cp ./.zshrc ~/.zshrc
+
 # Update MacOS software tools
 softwareupdate --all --install --force
 
@@ -23,11 +33,13 @@ cat > .extra << EOF
 #!/usr/bin/env bash
 GIT_AUTHOR_NAME="$AUTHOR_NAME"
 GIT_COMMITTER_NAME="$AUTHOR_NAME"
-git config --global user.name "$AUTHOR_NAME"
 GIT_AUTHOR_EMAIL="$EMAIL"
 GIT_COMMITTER_EMAIL="$EMAIL"
+git config --global user.name "$AUTHOR_NAME"
 git config --global user.email "$EMAIL"
 EOF
+
+
 
 # Contact message if computer is lost.
 echo "Enter your contact email if this computer is lost:"
@@ -35,17 +47,6 @@ read LOST_EMAIL
 echo "Enter your phone if this computer is lost:"
 read LOST_NUMBER
 sudo defaults write /Library/Preferences/com.apple.loginwindow LoginwindowText "If found, please contact $LOST_EMAIL or $LOST_NUMBER"
-
-# Install zsh.
-echo "Installing zsh ..."
-sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
-sudo chsh -s $(which zsh) $(whoami)
-
-# Install zsh syntax-highlighting.
-git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
-
-# Install zshrc configuration.
-cp ./.zshrc ~/.zshrc
 
 # Install command-line tools using Homebrew.
 echo "Installing Homebrew..."
@@ -79,6 +80,7 @@ killall gpg-agent
 # Install more recent versions of some macOS tools.
 brew install grep
 brew install openssh
+brew install exa # Modern `ls` replacement.
 # Newer version of git.
 brew install git
 # Install workflow tools.
@@ -90,6 +92,10 @@ brew install awscli
 brew install terraform
 # Install file extension modifier.
 brew install duti
+# Install MacOS App Store CLI.
+brew install mas
+# Install github cli for easier authentication.
+brew install gh
 
 # Setup git config.
 cp .gitconfig ~/.gitconfig
@@ -115,7 +121,7 @@ asdf global nodejs lts
 asdf reshim
 
 # Setup pnpm.
-npm i -g pnpm
+curl -fsSL https://get.pnpm.io/install.sh | sh -
 
 ANSWER=N
 read ANSWER\?"Use JetBrains monospace font? [y/N] "
@@ -138,32 +144,22 @@ if [[ $ANSWER = "y" ]]; then
 fi
 
 ANSWER=N
-read ANSWER\?"Install magnet? [y/N] "
+read ANSWER\?"Install interactive rebase tool? [y/N] "
+if [[ $ANSWER = "y" ]]; then
+  brew install git-interactive-rebase-tool
+  git config --global sequence.editor interactive-rebase-tool
+fi
+
+ANSWER=N
+read ANSWER\?"Install Magnet (application window resizing)? [y/N] "
 if [[ $ANSWER = "y" ]]; then
   mas install 441258766
 fi
 
 ANSWER=N
-read ANSWER\?"Install tailscale? [y/N] "
+read ANSWER\?"Install Tailscale (wireguard)? [y/N] "
 if [[ $ANSWER = "y" ]]; then
   mas install 1475387142
-fi
-
-ANSWER=N
-read ANSWER\?"Are you manually setting up 1Password git signing? [y/N] "
-if [[ $ANSWER = "y" ]]; then
-  git config --global commit.gpgsign true
-  git config --global tag.gpgSign true
-  echo "Please complete setup by following the manual steps in the README."
-fi
-
-ANSWER=N
-read ANSWER\?"Set security baseline? [y/N] "
-if [[ $ANSWER = "y" ]]; then
-  for f in ./preferences/security/*.sh; do
-    echo "$f"
-    bash "$f"
-  done
 fi
 
 ANSWER=N
@@ -184,8 +180,26 @@ if [[ $ANSWER = "y" ]]; then
   done
 fi
 
-./preferences/post.sh
+ANSWER=N
+read ANSWER\?"Are you manually setting up 1Password git signing? [y/N] "
+if [[ $ANSWER = "y" ]]; then
+  git config --global commit.gpgsign true
+  git config --global tag.gpgSign true
+  echo "Please complete setup by following the manual steps in the README."
+fi
+
+# This should be last as it has some awkward security prompts
+# that can interrupt the flow.
+ANSWER=N
+read ANSWER\?"Set security baseline? [y/N] "
+if [[ $ANSWER = "y" ]]; then
+  for f in ./preferences/security/*.sh; do
+    echo "$f"
+    bash "$f"
+  done
+fi
 
 # Remove outdated versions from the cellar.
 brew cleanup
 
+./preferences/post.sh

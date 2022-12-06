@@ -58,6 +58,7 @@ function json_colour() {
 # Add the rest of configs
 source ~/dotfiles/.functions
 source ~/dotfiles/.aliases
+source ~/dotfiles/.extra
 
 # This should always be last
 
