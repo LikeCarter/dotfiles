@@ -140,6 +140,8 @@ if [[ $ANSWER = "y" ]]; then
   brew install visual-studio-code
   brew install slack
   brew install spotify
+  # Must be installed in this order exactly.
+  brew install --cask docker
   brew install docker
 fi
 
