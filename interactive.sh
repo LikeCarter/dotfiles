@@ -143,6 +143,7 @@ if [[ $ANSWER = "y" ]]; then
   # Must be installed in this order exactly.
   brew install --cask docker
   brew install docker
+  brew install gh
 fi
 
 ANSWER=N
