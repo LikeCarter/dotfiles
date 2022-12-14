@@ -58,3 +58,5 @@ alias ls="exa --group-directories-first"
 alias ll="exa --group-directories-first -l"
 
 alias brew="env PATH=\"\${PATH//.asdf/shims:/}\" brew"
+
+alias ports="lsof -i -P -n | grep LISTEN"
