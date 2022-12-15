@@ -1,5 +1,8 @@
 [alias]
 
+	# Use like this `git reset-checkout 451a9a4 -- path/to/directory`
+    reset-checkout= !"f() { git diff --cached "$@" | git apply -R --index; }; f"
+
 	# View abbreviated SHA, description, and history graph of the latest 20 commits.
 	l = log --pretty=oneline -n 20 --graph --abbrev-commit
 
