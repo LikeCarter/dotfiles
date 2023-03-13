@@ -166,6 +166,12 @@ if [[ $ANSWER = "y" ]]; then
 fi
 
 ANSWER=N
+read ANSWER\?"Install NextDNS? [y/N] "
+if [[ $ANSWER = "y" ]]; then
+  mas install 1464122853
+fi
+
+ANSWER=N
 read ANSWER\?"Set default system preferences? [y/N] "
 if [[ $ANSWER = "y" ]]; then
   for f in ./preferences/system/*.sh; do
