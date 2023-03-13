@@ -1,8 +1,6 @@
 # Dotfiles
 
-## Setup
-
-### Automatic
+## Install
 
 This repository should be cloned and kept in `~`.
 
@@ -12,12 +10,11 @@ git clone https://github.com/LikeCarter/dotfiles
 ./dotfiles/interactive.sh
 ```
 
-### Post-install
+## Post-install
 
-[1Password Git Signing](https://developer.1password.com/docs/ssh/git-commit-signing/)
+### Security recommendations
 
-### Security tool recommendations
-
+- [1Password Git Signing](https://developer.1password.com/docs/ssh/git-commit-signing/)
 - [NextDNS](https://nextdns.io)
   - Block DNS requests to malware control servers, ad servers, and trackers.
 - [KnockKnock](https://objective-see.org/products/knockknock.html)
@@ -25,14 +22,13 @@ git clone https://github.com/LikeCarter/dotfiles
 - [BlockBlock](https://objective-see.org/products/blockblock.html)
   - Monitor common persistence locations and alerts whenever a persistent component is added.
 
-## License
+### Shortcuts
 
-[MIT](https://opensource.org/licenses/MIT)
+[iTerm2 Shortcuts](https://gist.github.com/squarism/ae3613daf5c01a98ba3a#file-iterm2-md)
 
 ## Author
 
-Carter Sprigings
+[LikeCarter](https://github.com/LikeCarter)
 
-## Further reference
+[MIT License](https://opensource.org/licenses/MIT)
 
-[iTerm2 Shortcuts](https://gist.github.com/squarism/ae3613daf5c01a98ba3a#file-iterm2-md)
