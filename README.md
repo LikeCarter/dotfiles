@@ -19,8 +19,6 @@ git clone https://github.com/LikeCarter/dotfiles
   - Block DNS requests to malware control servers, ad servers, and trackers.
 - [KnockKnock](https://objective-see.org/products/knockknock.html)
   - See what's persistently installed on your Mac.
-- [BlockBlock](https://objective-see.org/products/blockblock.html)
-  - Monitor common persistence locations and alerts whenever a persistent component is added.
 
 ### Shortcuts
 
