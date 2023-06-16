@@ -77,3 +77,5 @@ source $(brew --prefix asdf)/libexec/asdf.sh
 
 # You can use the OP_BIOMETRIC_UNLOCK environment variable to temporarily toggle the 1Password CLI and 1Password app integration on or off.
 OP_BIOMETRIC_UNLOCK_ENABLED=true
+
+[ -f /opt/homebrew/etc/profile.d/autojump.sh ] && . /opt/homebrew/etc/profile.d/autojump.sh
