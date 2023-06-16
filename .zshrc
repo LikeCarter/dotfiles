@@ -79,3 +79,6 @@ source $(brew --prefix asdf)/libexec/asdf.sh
 OP_BIOMETRIC_UNLOCK_ENABLED=true
 
 [ -f /opt/homebrew/etc/profile.d/autojump.sh ] && . /opt/homebrew/etc/profile.d/autojump.sh
+
+bindkey "^b" backward-word
+bindkey "^f" forward-word
