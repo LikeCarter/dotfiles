@@ -74,6 +74,7 @@ brew install gnu-sed
 # Install GnuPG to enable PGP-signing commits.
 brew install gnupg
 brew install pinentry-mac
+mkdir -p ~/.gnupg
 echo "pinentry-program /opt/homebrew/bin/pinentry-mac" >> ~/.gnupg/gpg-agent.conf
 killall gpg-agent
 
@@ -113,7 +114,7 @@ echo "Installing via asdf: python, ruby, and nodejs..."
 asdf plugin add python
 asdf install python latest
 asdf global python latest
-asdf plugin add latest
+asdf plugin add ruby
 asdf install ruby latest
 asdf plugin add nodejs
 asdf install nodejs lts
