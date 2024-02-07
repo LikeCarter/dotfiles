@@ -42,8 +42,7 @@ else
   export EDITOR='nano'
 fi
 
-alias jog='grep -v "jog" ~/.zsh_history_ext | grep -a --color=never "${PWD}   " | cut -f1 -d"⋮" | tail'
-alias zshconfig="nano ~/.zshrc"
+
 
 # Log bash history.
 function zshaddhistory() {
@@ -82,3 +81,9 @@ OP_BIOMETRIC_UNLOCK_ENABLED=true
 
 bindkey "^b" backward-word
 bindkey "^f" forward-word
+
+alias jog='grep -v "jog" ~/.zsh_history_ext | grep -a --color=never "${PWD}   " | cut -f1 -d"⋮" | tail'
+alias zshconfig="nano ~/.zshrc"
+alias p="pnpm"
+alias aic="aicommits --type conventional"
+alias ghpr="git symbolic-ref --short HEAD | cat | xargs -I {} gh pr create --title=': {}' --web"
