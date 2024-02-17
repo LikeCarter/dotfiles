@@ -12,6 +12,7 @@ install_default_apps() {
   brew install --cask docker
   brew install docker
   brew install gh
+  brew install neovim
 }
 
 # Function to install Magnet (application window resizing)

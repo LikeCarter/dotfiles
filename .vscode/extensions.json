@@ -1,4 +1,8 @@
 {
-  "recommendations": ["esbenp.prettier-vscode", "editorconfig.editorconfig"],
+  "recommendations": [
+    "esbenp.prettier-vscode",
+    "editorconfig.editorconfig",
+    "asvetliakov.vscode-neovim"
+  ],
   "unwantedRecommendations": []
 }
