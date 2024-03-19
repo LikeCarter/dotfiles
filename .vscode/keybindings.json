@@ -1,6 +1,44 @@
 // Place your key bindings in this file to override the defaultsauto[]
 [
     {
+        "key": "shift+cmd+up",
+        "command": "cursorMove",
+        "args": {
+            "to": "up",
+            "by": "line",
+            "value": 4
+        },
+        "when": "editorTextFocus"
+    },
+    {
+        "key": "shift+cmd+down",
+        "command": "cursorMove",
+        "args": {
+            "to": "down",
+            "by": "line",
+            "value": 4
+        },
+        "when": "editorTextFocus"
+    },
+    {
+        "key": "shift+ctrl+down",
+        "command": "cursorMove",
+        "when": "editorTextFocus",
+        "args": {
+            "to": "nextBlankLine",
+            "by": "wrappedLine"
+        }
+    },
+    {
+        "key": "shift+ctrl+up",
+        "command": "cursorMove",
+        "when": "editorTextFocus",
+        "args": {
+            "to": "prevBlankLine",
+            "by": "wrappedLine"
+        }
+    },
+    {
         "key": "ctrl+f",
         "command": "-cursorRight",
         "when": "textInputFocus"
