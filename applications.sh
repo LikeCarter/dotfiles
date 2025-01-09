@@ -9,8 +9,7 @@ install_default_apps() {
   brew install visual-studio-code
   brew install slack
   brew install spotify
-  brew install --cask docker
-  brew install docker
+  brew install orbstack
   brew install gh
   brew install neovim
 }
