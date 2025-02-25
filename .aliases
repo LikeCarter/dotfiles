@@ -61,4 +61,7 @@ alias brew="env PATH=\"\${PATH//.asdf/shims:/}\" brew"
 
 alias ports="lsof -i -P -n | grep LISTEN"
 
+alias tab="open -a iTerm ."
+alias window="open -n -a iTerm ."
+
 alias rereshim="rm ~/.asdf/shims/* && asdf reshim"
