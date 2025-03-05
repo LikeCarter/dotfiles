@@ -2,7 +2,7 @@
 export LANG='en_US.UTF-8';
 export LC_ALL='en_US.UTF-8';
 
-# Increase Bash history size. Allow 32³ entries; the default is 500.
+# Increase Bash history size.
 export HISTSIZE='32768';
 export HISTFILESIZE="${HISTSIZE}";
 # Omit duplicates and commands that begin with a space from history.
@@ -14,7 +14,6 @@ export GPG_TTY=$(tty);
 
 # Enable persistent REPL history for `node`.
 export NODE_REPL_HISTORY=~/.node_history;
-# Allow 32³ entries; the default is 1000.
 export NODE_REPL_HISTORY_SIZE='32768';
 # Use sloppy mode by default, matching web browsers.
 export NODE_REPL_MODE='sloppy';
@@ -42,8 +41,6 @@ else
   export EDITOR='nano'
 fi
 
-
-
 # Log bash history.
 function zshaddhistory() {
         echo "${1%%$'\n'}|${PWD}   " >> ~/.zsh_history_ext
@@ -58,8 +55,6 @@ function json_colour() {
 source ~/dotfiles/.functions
 source ~/dotfiles/.aliases
 source ~/dotfiles/.extra
-
-# This should always be last
 
 DISABLE_AUTO_UPDATE="true"
 ZSH_HIGHLIGHT_MAXLENGTH=512

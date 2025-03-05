@@ -185,3 +185,6 @@ defaults write NSGlobalDomain NSAutomaticWindowAnimationsEnabled -bool NO
 
 # Prevent Time Machine from prompting to use new hard drives as backup volume
 defaults write com.apple.TimeMachine DoNotOfferNewDisksForBackup -bool true
+
+# Remove text replacements
+defaults write -g NSUserDictionaryReplacementItems -array
