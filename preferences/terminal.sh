@@ -20,3 +20,23 @@ defaults write com.googlecode.iterm2 PromptOnQuit -bool false
 # Open File Manager To Directories (instead of jumping):
 # jo music
 brew install autojump
+
+# Define the required keybindings
+KEYBINDINGS='
+"\C-b": backward-word
+"\C-f": forward-word
+"\e\C-f": forward-word
+'
+
+# Check if ~/.inputrc exists
+if [ ! -f ~/.inputrc ]; then
+    echo "Creating ~/.inputrc"
+    touch ~/.inputrc
+fi
+
+# Append keybindings if they are not already present
+echo "$KEYBINDINGS" | while read -r line; do
+    if ! grep -Fxq "$line" ~/.inputrc; then
+        echo "$line" >> ~/.inputrc
+    fi
+done
