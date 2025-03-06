@@ -251,3 +251,19 @@ function ghpra() {
     [[ -n "$slack_name" ]] && echo "@$slack_name"
   done
 }
+
+standup() {
+    git for-each-ref --sort=-committerdate --format='%(committerdate:short) %(refname:short)' refs/heads/ | \
+    grep "$(date -v-1d +"%Y-%m-%d")" | \
+    cut -d' ' -f2 | \
+    grep -E 'eng-[0-9]{5}' | \
+    awk '
+    {
+        branch=$0;
+        if (match(branch, /eng-[0-9]{5}/)) {
+            ticket=substr(branch, RSTART, RLENGTH); # Extract eng-XXXXX
+            gsub(/eng-/, "ENG-", ticket); # Convert to uppercase ENG-XXXXX
+            print "[" branch "](https://linear.app/secoda/issue/" ticket ")";
+        }
+    }'
+}
