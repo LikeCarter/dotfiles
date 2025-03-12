@@ -267,3 +267,51 @@ standup() {
         }
     }'
 }
+
+
+squash_since_main() {
+    echo "Preparing to squash all commits since origin/main..."
+
+    # Fetch latest from origin
+    git fetch origin main --quiet
+
+    # Define commit range
+    COMMIT_RANGE="origin/main..HEAD"
+
+    # Count commits in the range
+    COMMIT_COUNT=$(git rev-list --count $COMMIT_RANGE)
+
+    if [[ $COMMIT_COUNT -eq 0 ]]; then
+        echo "No commits found between origin/main and HEAD."
+        return
+    fi
+
+    echo "Found $COMMIT_COUNT commits to squash."
+
+    # Get the current branch name
+    CURRENT_BRANCH=$(git rev-parse --abbrev-ref HEAD)
+
+    # Create a temporary file for the commit message
+    TEMP_MSG_FILE=$(mktemp)
+
+    # Start with a title line
+    echo "Squashed $COMMIT_COUNT commits from branch $CURRENT_BRANCH" > "$TEMP_MSG_FILE"
+    echo "" >> "$TEMP_MSG_FILE"
+    echo "Original commits:" >> "$TEMP_MSG_FILE"
+
+    # Add bullet points for each commit
+    git log $COMMIT_RANGE --pretty=format:"* %s (%h)" --reverse >> "$TEMP_MSG_FILE"
+    # Get the base commit for rebasing
+    BASE_COMMIT=$(git merge-base HEAD origin/main)
+
+    # Perform the squash using reset and commit
+    echo "Squashing commits..."
+    git reset --soft $BASE_COMMIT
+    git commit --file="$TEMP_MSG_FILE" -S
+
+    # Clean up
+    rm "$TEMP_MSG_FILE"
+
+    echo "Squash complete. Pushing with lease..."
+    git push --force-with-lease
+}
