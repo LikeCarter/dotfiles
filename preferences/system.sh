@@ -188,3 +188,8 @@ defaults write com.apple.TimeMachine DoNotOfferNewDisksForBackup -bool true
 
 # Remove text replacements
 defaults write -g NSUserDictionaryReplacementItems -array
+
+# Disable internet search in spotlight
+defaults write com.apple.Spotlight SuggestionsEnabled -bool false
+defaults write com.apple.lookup.shared LookupSuggestionsDisabled -bool true
+defaults write com.apple.Siri SiriSuggestionsEnabled -bool false
