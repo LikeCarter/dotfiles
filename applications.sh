@@ -10,8 +10,8 @@ install_default_apps() {
   brew install slack
   brew install spotify
   brew install orbstack
-  brew install gh
   brew install neovim
+  brew install gh
 }
 
 # Function to install Magnet (application window resizing)
