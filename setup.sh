@@ -76,10 +76,9 @@ EOF
   asdf plugin add nodejs
   asdf install nodejs lts
   asdf global nodejs lts
+  asdf plugin add pnpm
+  asdf install pnpm latest
   asdf reshim
-
-  # Setup pnpm
-  curl -fsSL https://get.pnpm.io/install.sh | sh -
 
   # Remove outdated versions from the cellar
   brew cleanup

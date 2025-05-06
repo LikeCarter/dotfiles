@@ -13,14 +13,6 @@ defaults write com.googlecode.iterm2 PromptOnQuit -bool false
 
 # Jump To A Directory That Contains foo:
 
-# j foo
-# Jump To A Child Directory:
-# Sometimes it's convenient to jump to a child directory (sub-directory of current directory) rather than typing out the full name.
-# jc bar
-# Open File Manager To Directories (instead of jumping):
-# jo music
-brew install autojump
-
 # Define the required keybindings
 KEYBINDINGS='
 "\C-b": backward-word
