@@ -29,14 +29,6 @@ install_nextdns() {
   mas install 1464122853
 }
 
-# Function to set default application and system preferences
-set_default_preferences() {
-  for f in ./preferences/*.sh; do
-    echo "$f"
-    bash "$f"
-  done
-}
-
 # Function to install the interactive rebase tool for Git
 install_interactive_rebase_tool() {
   brew install git-interactive-rebase-tool
@@ -70,11 +62,6 @@ fi
 read -p "Install NextDNS? [y/N] " ANSWER
 if [[ $ANSWER = "y" ]]; then
   install_nextdns
-fi
-
-read -p "Set default application and system preferences? [y/N] " ANSWER
-if [[ $ANSWER = "y" ]]; then
-  set_default_preferences
 fi
 
 read -p "Install interactive rebase tool? [y/N] " ANSWER

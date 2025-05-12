@@ -84,32 +84,12 @@ EOF
   brew cleanup
 }
 
-# Function to setup application baseline
-setup_application_baseline() {
-  echo "You may be prompted for your password at certain steps (for sudo)."
-  # Run yes/no installers for applications
-  ./applications.sh
-}
-
-# Function to setup security baseline
-setup_security_baseline() {
-  ./security.sh
-}
-
-# Main script
-read -p "Setup development baseline? [y/N] " ANSWER
-if [[ $ANSWER = "y" ]]; then
-  setup_development_baseline
-fi
+./system.sh
 
 read -p "Setup application baseline? [y/N] " ANSWER
 if [[ $ANSWER = "y" ]]; then
-  setup_application_baseline
-fi
-
-read -p "Setup security baseline? [y/N] " ANSWER
-if [[ $ANSWER = "y" ]]; then
-  setup_security_baseline
+  ./applications.sh
 fi
 
 echo "Setup complete!"
+
