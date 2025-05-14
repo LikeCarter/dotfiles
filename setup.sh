@@ -23,20 +23,6 @@ setup_development_baseline() {
   sudo scutil --set LocalHostName "$COMPUTER_NAME"
   sudo defaults write /Library/Preferences/SystemConfiguration/com.apple.smb.server NetBIOSName -string "$COMPUTER_NAME"
 
-  echo "Enter your email for git contributions:"
-  read EMAIL
-  echo "Enter your name for git contributions:"
-  read AUTHOR_NAME
-  cat > .extra << EOF
-#!/usr/bin/env bash
-GIT_AUTHOR_NAME="$AUTHOR_NAME"
-GIT_COMMITTER_NAME="$AUTHOR_NAME"
-GIT_AUTHOR_EMAIL="$EMAIL"
-GIT_COMMITTER_EMAIL="$EMAIL"
-git config --global user.name "$AUTHOR_NAME"
-git config --global user.email "$EMAIL"
-EOF
-
   # Configure contact message if computer is lost
   echo "Enter your contact email if this computer is lost:"
   read LOST_EMAIL
@@ -57,7 +43,6 @@ EOF
   ln -s "${BREW_PREFIX}/bin/gsha256sum" "${BREW_PREFIX}/bin/sha256sum"
 
   # Other configurations
-  cp .gitconfig ~/.gitconfig
   git config --global credential.helper osxkeychain
   git config --global push.autoSetupRemote true
 
