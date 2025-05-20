@@ -44,6 +44,8 @@ setup_1password_git_signing() {
 
 # Main script
 
+brew install mas
+
 read -p "Install default apps (1password, chrome, iterm2, vscode, slack, spotify, docker)? [y/N] " ANSWER
 if [[ $ANSWER = "y" ]]; then
   install_default_apps
@@ -74,5 +76,4 @@ if [[ $ANSWER = "y" ]]; then
   setup_1password_git_signing
 fi
 
-# Remove outdated versions from the cellar.
 brew cleanup
