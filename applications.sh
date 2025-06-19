@@ -24,11 +24,6 @@ install_tailscale() {
   mas install 1475387142
 }
 
-# Function to install NextDNS
-install_nextdns() {
-  mas install 1464122853
-}
-
 # Function to install the interactive rebase tool for Git
 install_interactive_rebase_tool() {
   brew install git-interactive-rebase-tool
@@ -59,11 +54,6 @@ fi
 read -p "Install Tailscale? [y/N] " ANSWER
 if [[ $ANSWER = "y" ]]; then
   install_tailscale
-fi
-
-read -p "Install NextDNS? [y/N] " ANSWER
-if [[ $ANSWER = "y" ]]; then
-  install_nextdns
 fi
 
 read -p "Install interactive rebase tool? [y/N] " ANSWER
