@@ -189,45 +189,14 @@ function aws.print-all-instances() {
   done
 }
 
-
 function ghpra() {
   echo "Enter a prefix for the PR title (e.g. fix)"
   read -r PREFIX
   echo "Creating PR with prefix: $PREFIX"
 
-  # GitHub to Slack username mapping
-  declare -A gh_to_slack=(
-    ["<GH_USERNAME>"]="<SLACK_DISPLAYNAME>"
-    ["<GH_USERNAME>"]="<SLACK_DISPLAYNAME>"
-  )
-
-  # Randomly select code owners
-  frontend=$(shuf -e GH_USERNAME GH_USERNAME -n 1)
-  backend=$(shuf -e GH_USERNAME GH_USERNAME -n 1)
-  infra=$(shuf -e GH_USERNAME GH_USERNAME -n 1)
-  migration="<GH_USERNAME>"
-  other="<GH_USERNAME>"
-
-  declare -a reviewers
-
-  # Determine modified directories and assign reviewers
-  git diff --name-only HEAD HEAD~1 | while read -r file; do
-    case "$file" in
-      frontend/*) reviewers+=("$frontend") ;;
-      api/*) reviewers+=("$backend") ;;
-      migration/*) reviewers+=("$migration") ;;
-      .github/*) reviewers+=("$infra") ;;
-    esac
-  done
-
-  # Remove duplicate reviewers
-  reviewers=($(printf "%s\n" "${reviewers[@]}" | sort -u))
-
-  assignee=$(IFS=,; echo "${reviewers[*]}")
   title="$PREFIX: $(git symbolic-ref --short HEAD)"
 
   echo "Generated PR title: $title"
-  echo "Reviewers: $assignee"
 
   git push
 
@@ -236,40 +205,46 @@ function ghpra() {
 
   if [[ -n "$existing_pr" ]]; then
     echo "PR already exists: $existing_pr"
-    echo "Copy and paste the following in Slack:"
-    echo "[$title]($existing_pr)"
+    pr_url=$existing_pr
   else
-    output=$(gh pr create --fill --title="$title" --reviewer "$assignee" --assignee "$assignee")
+    output=$(gh pr create --fill --title="$title")
     echo "PR created: $output"
-    echo "Copy and paste the following in Slack:"
-    echo "[$title]($output)"
+    pr_url=$(echo "$output" | grep -o 'https://github\.com/[^[:space:]]*')
+  fi
+  
+  # Check for a valid URL before proceeding
+  if [[ -z "$pr_url" ]]; then
+    echo "Could not find a valid PR URL. Please check the 'gh pr create' output."
+    exit 1
   fi
 
-  # Notify reviewers on Slack
-  for reviewer in "${reviewers[@]}"; do
-    slack_name="${gh_to_slack[$reviewer]}"
-    [[ -n "$slack_name" ]] && echo "@$slack_name"
-  done
+  echo "Copy and paste the following in Slack:"
+  echo "[$title]($pr_url)"
 }
 
 standup() {
     local days=${1:-1}  # Default to 1 if no argument provided
+    local cutoff_date=$(date -v-"${days}"d +"%Y-%m-%d")
+
     echo "Branches in the last $days days:"
     git for-each-ref --sort=-committerdate --format='%(committerdate:short) %(refname:short)' refs/heads/ | \
-    grep "$(date -v-${days}d +"%Y-%m-%d")" | \
-    cut -d' ' -f2 | \
-    grep -E 'eng-[0-9]{5}' | \
-    awk '
+    awk -v cutoff="$cutoff_date" '
     {
-        branch=$0;
-        if (match(branch, /eng-[0-9]{5}/)) {
-            ticket=substr(branch, RSTART, RLENGTH); # Extract eng-XXXXX
-            gsub(/eng-/, "ENG-", ticket); # Convert to uppercase ENG-XXXXX
-            print "[" branch "](https://linear.app/secoda/issue/" ticket ")";
+        date_part = $1;
+        branch_part = $2;
+        
+        if (date_part > cutoff) {
+            # Now process the branch name
+            if (match(branch_part, /eng-[0-9]{5}/)) {
+                ticket = substr(branch_part, RSTART, RLENGTH);
+                gsub(/eng-/, "ENG-", ticket);
+                print "[" branch_part "](https://linear.app/secoda/issue/" ticket ")";
+            } else {
+                print "[" branch_part "](https://github.com/secoda/secoda/pulls)";
+            }
         }
     }'
 }
-
 
 squash_since_main() {
     echo "Preparing to squash all commits since origin/main..."
