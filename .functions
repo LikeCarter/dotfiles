@@ -190,36 +190,8 @@ function aws.print-all-instances() {
 }
 
 function ghpra() {
-  echo "Enter a prefix for the PR title (e.g. fix)"
-  read -r PREFIX
-  echo "Creating PR with prefix: $PREFIX"
-
-  title="$PREFIX: $(git symbolic-ref --short HEAD)"
-
-  echo "Generated PR title: $title"
-
-  git push
-
-  # Check if a PR already exists
-  existing_pr=$(gh pr list --base main --head "$(git rev-parse --abbrev-ref HEAD)" --json url --jq '.[0].url')
-
-  if [[ -n "$existing_pr" ]]; then
-    echo "PR already exists: $existing_pr"
-    pr_url=$existing_pr
-  else
-    output=$(gh pr create --fill --title="$title")
-    echo "PR created: $output"
-    pr_url=$(echo "$output" | grep -o 'https://github\.com/[^[:space:]]*')
-  fi
-  
-  # Check for a valid URL before proceeding
-  if [[ -z "$pr_url" ]]; then
-    echo "Could not find a valid PR URL. Please check the 'gh pr create' output."
-    exit 1
-  fi
-
-  echo "Copy and paste the following in Slack:"
-  echo "[$title]($pr_url)"
+  npm install -g prompts@2.4.2
+  node ~/dotfiles/ghpr-cli.js
 }
 
 standup() {
@@ -232,7 +204,7 @@ standup() {
     {
         date_part = $1;
         branch_part = $2;
-        
+
         if (date_part > cutoff) {
             # Now process the branch name
             if (match(branch_part, /eng-[0-9]{5}/)) {
