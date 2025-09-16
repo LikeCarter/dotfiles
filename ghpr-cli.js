@@ -21,11 +21,12 @@ function log(message, color = 'reset') {
 
 function execCommand(command, options = {}) {
     try {
-        return execSync(command, {
+        const result = execSync(command, {
             encoding: 'utf8',
             stdio: options.silent ? 'pipe' : 'inherit',
             ...options
         });
+        return result || '';
     } catch (error) {
         if (!options.silent) {
             log(`Error executing command: ${command}`, 'red');
@@ -67,7 +68,18 @@ async function checkExistingPR(branch) {
     }
 }
 
-async function createOrUpdatePR(title, reviewers, assignees, existingPR) {
+async function getPRUrl(branch) {
+    try {
+        const prQuery = `gh pr list --head "${branch}" --json url --jq '.[0].url'`;
+        const prUrlOutput = execCommand(prQuery, { silent: true });
+        const prUrl = prUrlOutput.trim();
+        return prUrl && prUrl !== 'null' ? prUrl : null;
+    } catch (error) {
+        return null;
+    }
+}
+
+async function createOrUpdatePR(title, reviewers, assignees, existingPR, currentBranch) {
     try {
         // Push the current branch
         log('Pushing current branch...', 'blue');
@@ -91,8 +103,13 @@ async function createOrUpdatePR(title, reviewers, assignees, existingPR) {
                 execCommand(`gh pr edit ${existingPR.number} --add-assignee ${assignees.join(',')}`, { silent: true });
             }
 
-            prUrl = existingPR.url;
-            log(`PR updated: ${prUrl}`, 'green');
+            // Get the PR URL
+            prUrl = await getPRUrl(currentBranch);
+            if (prUrl) {
+                log(`PR updated: ${prUrl}`, 'green');
+            } else {
+                log('Could not retrieve PR URL', 'yellow');
+            }
         } else {
             log('Creating new PR...', 'blue');
 
@@ -107,14 +124,15 @@ async function createOrUpdatePR(title, reviewers, assignees, existingPR) {
                 createCommand += ` --assignee ${assignees.join(',')}`;
             }
 
-            const output = execCommand(createCommand);
-            const urlMatch = output.match(/https:\/\/github\.com\/[^\s]*/);
-            prUrl = urlMatch ? urlMatch[0] : null;
+            // Create the PR (don't capture output as it might be empty)
+            execCommand(createCommand);
 
+            // Get the PR URL
+            prUrl = await getPRUrl(currentBranch);
             if (prUrl) {
                 log(`PR created: ${prUrl}`, 'green');
             } else {
-                log('PR created but could not extract URL from output', 'yellow');
+                log('PR created but could not retrieve URL', 'yellow');
             }
         }
 
@@ -209,7 +227,7 @@ async function main() {
         log(`Assignees: ${assignees.join(', ')}`, 'blue');
     }
 
-    const prUrl = await createOrUpdatePR(title, reviewers, assignees, existingPR);
+    const prUrl = await createOrUpdatePR(title, reviewers, assignees, existingPR, currentBranch);
 
     if (prUrl) {
         log('\n📋 Copy and paste the following in Slack:', 'bright');
