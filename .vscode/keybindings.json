@@ -1,88 +1,207 @@
-// Place your key bindings in this file to override the defaultsauto[]
+// Place your key bindings in this file to override the defaults
 [
     {
-        "key": "shift+cmd+up",
-        "command": "cursorMove",
+        "key": "cmd+i",
+        "command": "composerMode.agent"
+    },
+    {
+        "key": "ctrl+d",
+        "command": "workbench.files.action.showActiveFileInExplorer"
+    },
+    {
+        "key": "ctrl+s",
+        "command": "filesExplorer.findInWorkspace"
+    },
+    {
+        "key": "cmd+1",
+        "command": "workbench.action.openEditorAtIndex1"
+    },
+    {
+        "key": "cmd+2",
+        "command": "workbench.action.openEditorAtIndex2"
+    },
+    {
+        "key": "cmd+3",
+        "command": "workbench.action.openEditorAtIndex3"
+    },
+    {
+        "key": "cmd+4",
+        "command": "workbench.action.openEditorAtIndex4"
+    },
+    {
+        "key": "cmd+5",
+        "command": "workbench.action.openEditorAtIndex5"
+    },
+    {
+        "key": "cmd+6",
+        "command": "workbench.action.openEditorAtIndex6"
+    },
+    {
+        "key": "cmd+7",
+        "command": "workbench.action.openEditorAtIndex7"
+    },
+    {
+        "key": "cmd+8",
+        "command": "workbench.action.openEditorAtIndex8"
+    },
+    {
+        "key": "cmd+9",
+        "command": "workbench.action.openEditorAtIndex9"
+    },
+    {
+        "key": "alt+down",
+        "command": "runCommands",
         "args": {
-            "to": "up",
-            "by": "line",
-            "value": 4
+            "commands": ["cursorDown", "editor.gotoNextFold"]
         },
         "when": "editorTextFocus"
     },
     {
-        "key": "shift+cmd+down",
-        "command": "cursorMove",
+        "key": "alt+up",
+        "command": "runCommands",
         "args": {
-            "to": "down",
-            "by": "line",
-            "value": 4
+            "commands": ["cursorUp", "editor.gotoPreviousFold"]
         },
         "when": "editorTextFocus"
     },
     {
-        "key": "shift+ctrl+down",
-        "command": "cursorMove",
-        "when": "editorTextFocus",
+        "key": "shift+alt+down",
+        "command": "runCommands",
         "args": {
-            "to": "nextBlankLine",
-            "by": "wrappedLine"
-        }
+            "commands": ["cursorLineEndSelect", "editor.action.selectFromAnchorToCursor"]
+        },
+        "when": "editorTextFocus && selectionAnchorSet"
     },
     {
-        "key": "shift+ctrl+up",
-        "command": "cursorMove",
-        "when": "editorTextFocus",
+        "key": "shift+alt+down",
+        "command": "runCommands",
         "args": {
-            "to": "prevBlankLine",
-            "by": "wrappedLine"
-        }
+            "commands": ["cursorLineStart", "editor.action.setSelectionAnchor", "cursorDown", "editor.gotoNextFold"]
+        },
+        "when": "editorTextFocus && !selectionAnchorSet"
+    },
+    {
+        "key": "shift+alt+up",
+        "command": "runCommands",
+        "args": {
+            "commands": ["cursorLineStartSelect", "editor.action.selectFromAnchorToCursor"]
+        },
+        "when": "editorTextFocus && selectionAnchorSet"
+    },
+    {
+        "key": "shift+alt+up",
+        "command": "runCommands",
+        "args": {
+            "commands": ["cursorLineEnd", "editor.action.setSelectionAnchor", "cursorUp", "editor.gotoPreviousFold"]
+        },
+        "when": "editorTextFocus && !selectionAnchorSet"
     },
     {
         "key": "ctrl+f",
-        "command": "-cursorRight",
-        "when": "textInputFocus"
+        "command": "actions.find",
     },
     {
-        "key": "alt+f",
-        "command": "editor.gotoNextFold"
+        "key": "ctrl+r",
+        "command": "deleteWordRight",
+        "when": "editorFocus"
     },
     {
-        "key": "alt+b",
-        "command": "editor.gotoPreviousFold"
+        "key": "ctrl+l",
+        "command": "deleteWordLeft",
+        "when": "editorFocus"
     },
     {
-        "key": "ctrl+f",
-        "command": "cursorWordPartRight",
-        "when": "textInputFocus"
+        "key": "ctrl+shift+r",
+        "command": "deleteAllRight",
+        "when": "editorFocus"
     },
     {
-        "key": "ctrl+alt+right",
-        "command": "-cursorWordPartRight",
-        "when": "textInputFocus"
+        "key": "ctrl+shift+l",
+        "command": "deleteAllLeft",
+        "when": "editorFocus"
     },
     {
-        "key": "ctrl+b",
-        "command": "cursorWordPartLeft",
-        "when": "textInputFocus"
+        "key": "ctrl+shift+g",
+        "command": "cursorBottom",
+        "when": "editorFocus"
     },
     {
-        "key": "ctrl+alt+left",
-        "command": "-cursorWordPartLeft",
-        "when": "textInputFocus"
+        "key": "ctrl+v",
+        "command": "runCommands",
+        "args": {
+            "commands": [
+                "cursorHome",
+                "cursorEndSelect"
+            ]
+        },
+        "when": "editorFocus"
     },
     {
-        "key": "ctrl+w",
-        "command": "-workbench.action.switchWindow"
+        "key": "ctrl+shift+v",
+        "command": "runCommands",
+        "args": {
+            "commands": [
+                "cursorHome",
+                "cursorEndSelect"
+            ]
+        },
+        "when": "editorFocus"
     },
     {
-        "key": "ctrl+w",
-        "command": "deleteWordPartLeft",
-        "when": "textInputFocus && !editorReadonly"
+        "key": "ctrl+o",
+        "command": "runCommands",
+        "args": {
+            "commands": [
+                "workbench.action.gotoSymbol",
+            ]
+        },
+        "when": "editorTextFocus"
     },
     {
-        "key": "ctrl+alt+backspace",
-        "command": "-deleteWordPartLeft",
-        "when": "textInputFocus && !editorReadonly"
+        "key": "ctrl+u",
+        "command": "runCommands",
+        "args": {
+            "commands": [
+                "cursorLineStart",
+                "editor.action.insertLineBefore"
+            ]
+        },
+        "when": "editorTextFocus"
+    },
+    {
+        "key": "ctrl+enter",
+        "command": "runCommands",
+        "args": {
+            "commands": [
+                "cursorEnd",
+                "editor.action.insertLineAfter"
+            ]
+        },
+        "when": "editorTextFocus"
+    },
+    {
+        "key": "ctrl+a",
+        "command": "cursorHome",
+        "when": "editorTextFocus"
+    },
+    {
+        "key": "cmd+enter",
+        "command": "explorer.openAndPassFocus",
+        "when": "filesExplorerFocus && !inputFocus"
+    },
+    {
+        "key": "ctrl+m",
+        "command": "cursorMove",
+        "args": {
+            "to": "viewPortCenter"
+        }
+    },
+    {
+        "key": "ctrl+[",
+        "command": "editor.fold",
+    },
+    {
+        "key": "ctrl+]",
+        "command": "editor.unfold",
     }
 ]
