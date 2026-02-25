@@ -49,10 +49,18 @@
         "command": "workbench.action.openEditorAtIndex9"
     },
     {
+        "key": "ctrl+=",
+        "command": "editor.action.goToTypeDefinition",
+        "when": "editorTextFocus"
+    },
+    {
         "key": "alt+down",
         "command": "runCommands",
         "args": {
-            "commands": ["cursorDown", "editor.gotoNextFold"]
+            "commands": [
+                "cursorDown",
+                "editor.gotoNextFold"
+            ]
         },
         "when": "editorTextFocus"
     },
@@ -60,7 +68,10 @@
         "key": "alt+up",
         "command": "runCommands",
         "args": {
-            "commands": ["cursorUp", "editor.gotoPreviousFold"]
+            "commands": [
+                "cursorUp",
+                "editor.gotoPreviousFold"
+            ]
         },
         "when": "editorTextFocus"
     },
@@ -68,7 +79,10 @@
         "key": "shift+alt+down",
         "command": "runCommands",
         "args": {
-            "commands": ["cursorLineEndSelect", "editor.action.selectFromAnchorToCursor"]
+            "commands": [
+                "cursorLineEndSelect",
+                "editor.action.selectFromAnchorToCursor"
+            ]
         },
         "when": "editorTextFocus && selectionAnchorSet"
     },
@@ -76,7 +90,12 @@
         "key": "shift+alt+down",
         "command": "runCommands",
         "args": {
-            "commands": ["cursorLineStart", "editor.action.setSelectionAnchor", "cursorDown", "editor.gotoNextFold"]
+            "commands": [
+                "cursorLineStart",
+                "editor.action.setSelectionAnchor",
+                "cursorDown",
+                "editor.gotoNextFold"
+            ]
         },
         "when": "editorTextFocus && !selectionAnchorSet"
     },
@@ -84,7 +103,10 @@
         "key": "shift+alt+up",
         "command": "runCommands",
         "args": {
-            "commands": ["cursorLineStartSelect", "editor.action.selectFromAnchorToCursor"]
+            "commands": [
+                "cursorLineStartSelect",
+                "editor.action.selectFromAnchorToCursor"
+            ]
         },
         "when": "editorTextFocus && selectionAnchorSet"
     },
@@ -92,7 +114,12 @@
         "key": "shift+alt+up",
         "command": "runCommands",
         "args": {
-            "commands": ["cursorLineEnd", "editor.action.setSelectionAnchor", "cursorUp", "editor.gotoPreviousFold"]
+            "commands": [
+                "cursorLineEnd",
+                "editor.action.setSelectionAnchor",
+                "cursorUp",
+                "editor.gotoPreviousFold"
+            ]
         },
         "when": "editorTextFocus && !selectionAnchorSet"
     },
