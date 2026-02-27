@@ -231,12 +231,14 @@
         "command": "editor.unfold",
     },
     {
-        "key": "ctrl+n",
+        "key": "alt+down",
         "command": "search.focus.nextInputBox",
+        "when": "searchInputBoxFocus || searchViewletFocus"
     },
     {
-        "key": "ctrl+p",
+        "key": "alt+up",
         "command": "search.focus.previousInputBox",
+        "when": "searchInputBoxFocus || searchViewletFocus"
     },
     {
         "key": "cmd+enter",
