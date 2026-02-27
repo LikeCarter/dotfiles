@@ -10,7 +10,13 @@
     },
     {
         "key": "ctrl+s",
-        "command": "filesExplorer.findInWorkspace"
+        "command": "filesExplorer.findInWorkspace",
+        "when": "!searchInputBoxFocus"
+    },
+    {
+        "key": "ctrl+s",
+        "command": "search.action.focusSearchList",
+        "when": "searchInputBoxFocus"
     },
     {
         "key": "cmd+1",
@@ -247,6 +253,18 @@
                 "closeFindWidget",
                 "editor.action.smartSelect.expand"
             ]
-        }
+        },
+        "when": "findWidgetVisible"
+    },
+    {
+        "key": "cmd+enter",
+        "command": "runCommands",
+        "args": {
+            "commands": [
+                "search.action.openResult",
+                "editor.action.smartSelect.expand"
+            ]
+        },
+        "when": "searchResultListFocused"
     }
 ]
