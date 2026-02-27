@@ -230,5 +230,23 @@
     {
         "key": "ctrl+]",
         "command": "editor.unfold",
+    },
+    {
+        "key": "ctrl+n",
+        "command": "search.focus.nextInputBox",
+    },
+    {
+        "key": "ctrl+p",
+        "command": "search.focus.previousInputBox",
+    },
+    {
+        "key": "cmd+enter",
+        "command": "runCommands",
+        "args": {
+            "commands": [
+                "closeFindWidget",
+                "editor.action.smartSelect.expand"
+            ]
+        }
     }
 ]
