@@ -223,13 +223,6 @@
         "when": "filesExplorerFocus && !inputFocus"
     },
     {
-        "key": "ctrl+m",
-        "command": "cursorMove",
-        "args": {
-            "to": "viewPortCenter"
-        }
-    },
-    {
         "key": "ctrl+[",
         "command": "editor.fold",
     },
@@ -266,5 +259,17 @@
             ]
         },
         "when": "searchResultListFocused"
-    }
+    },
+    {
+        "key": "ctrl+m",
+        "command": "editor.action.smartSelect.expand",
+    },
+    {
+        "key": "ctrl+t",
+        "command": "cursorTop",
+    },
+    {
+        "key": "ctrl+b",
+        "command": "cursorBottom",
+    },
 ]
