@@ -223,6 +223,16 @@
         "when": "filesExplorerFocus && !inputFocus"
     },
     {
+        "key": "alt+down",
+        "command": "list.focusDown",
+        "when": "(filesExplorerFocus || (explorerViewletFocus && listFocus)) && !inputFocus && !treeFindOpen"
+    },
+    {
+        "key": "alt+up",
+        "command": "list.focusUp",
+        "when": "(filesExplorerFocus || (explorerViewletFocus && listFocus)) && !inputFocus && !treeFindOpen"
+    },
+    {
         "key": "ctrl+[",
         "command": "editor.fold",
     },
@@ -233,12 +243,12 @@
     {
         "key": "alt+down",
         "command": "search.focus.nextInputBox",
-        "when": "searchInputBoxFocus || searchViewletFocus"
+        "when": "(searchInputBoxFocus || searchViewletFocus) && !listFocus"
     },
     {
         "key": "alt+up",
         "command": "search.focus.previousInputBox",
-        "when": "searchInputBoxFocus || searchViewletFocus"
+        "when": "(searchInputBoxFocus || searchViewletFocus) && (!listFocus || listScrollAtBoundary == 'both')"
     },
     {
         "key": "cmd+enter",
@@ -273,5 +283,10 @@
     {
         "key": "ctrl+b",
         "command": "cursorBottom",
+    },
+    {
+        "key": "alt+cmd+s",
+        "command": "workbench.action.toggleUnifiedSidebarFromKeyboard",
+        "when": "!isAuxiliaryWindowFocusedContext"
     },
 ]
