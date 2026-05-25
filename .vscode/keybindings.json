@@ -19,6 +19,26 @@
         "when": "searchInputBoxFocus"
     },
     {
+        "key": "ctrl+n",
+        "command": "runCommands",
+        "args": {
+            "commands": [
+                "search.action.focusNextSearchResult"
+            ]
+        },
+        "when": "!searchInputBoxFocus && !searchViewletFocus && !listFocus && searchViewletVisible"
+    },
+    {
+        "key": "ctrl+p",
+        "command": "runCommands",
+        "args": {
+            "commands": [
+                "search.action.focusPreviousSearchResult"
+            ]
+        },
+        "when": "!searchInputBoxFocus && !searchViewletFocus && !listFocus && searchViewletVisible"
+    },
+    {
         "key": "cmd+1",
         "command": "workbench.action.openEditorAtIndex1"
     },
@@ -283,10 +303,5 @@
     {
         "key": "ctrl+b",
         "command": "cursorBottom",
-    },
-    {
-        "key": "alt+cmd+s",
-        "command": "workbench.action.toggleUnifiedSidebarFromKeyboard",
-        "when": "!isAuxiliaryWindowFocusedContext"
-    },
+    }
 ]
