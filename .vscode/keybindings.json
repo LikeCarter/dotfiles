@@ -14,6 +14,11 @@
         "when": "!searchInputBoxFocus"
     },
     {
+        "key": "cmd+d",
+        "command": "editor.action.goToDeclaration",
+        "when": "editorFocus"
+    },
+    {
         "key": "ctrl+s",
         "command": "search.action.focusSearchList",
         "when": "searchInputBoxFocus"
