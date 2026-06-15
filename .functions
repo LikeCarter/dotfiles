@@ -294,7 +294,7 @@ git-rebase-onto-parent() {
   echo "----------------------------------------"
 
   # 4. Execute the rebase
-  git rebase --onto origin/main "$old_parent" "$current_branch"
+  git fetch && git rebase --onto origin/main "$old_parent" "$current_branch"
 }
 
 # Optional: Create a handy alias for it
