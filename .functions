@@ -264,3 +264,38 @@ squash_since_main() {
     echo "Squash complete. Pushing with lease..."
     git push --force-with-lease
 }
+
+git-rebase-onto-parent() {
+  # 1. Get the current branch name
+  local current_branch=$(git symbolic-ref --short HEAD 2>/dev/null)
+  if [[ -z "$current_branch" ]]; then
+    echo "❌ Error: You are not currently on a git branch (detached HEAD)." >&2
+    return 1
+  fi
+
+  # 2. Find the previous branch from the reflog
+  # Looks for the most recent "checkout: moving from <parent> to <current>"
+  local old_parent=$(git reflog -n 50 | \
+    grep -E "checkout: moving from .* to ${current_branch}$" | \
+    head -n 1 | \
+    sed -E 's/.*moving from ([^ ]+) to.*/\1/')
+
+  # 3. Validation safely checks
+  if [[ -z "$old_parent" ]]; then
+    echo "❌ Error: Could not determine the previous branch from the reflog." >&2
+    return 1
+  fi
+
+  echo "🚀 Detected current branch: $current_branch"
+  echo "🌿 Detected old parent branch: $old_parent"
+  echo "🎯 Target new parent: origin/main"
+  echo "----------------------------------------"
+  echo "Running: git rebase --onto origin/main $old_parent $current_branch"
+  echo "----------------------------------------"
+
+  # 4. Execute the rebase
+  git rebase --onto origin/main "$old_parent" "$current_branch"
+}
+
+# Optional: Create a handy alias for it
+alias gro=git-rebase-onto-parent
